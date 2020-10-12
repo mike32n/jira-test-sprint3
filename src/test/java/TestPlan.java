@@ -10,16 +10,22 @@ public class TestPlan {
     @BeforeSuite
     public static void main(String[] args) {
         // ChromeDriver location set up in Utils class
-        System.setProperty("webdriver.chrome.driver", Utils.CHROME_DRIVER_LOCATION);
+        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
     }
 
-    @Test(testName = "Submit a WebForm")
-    public static void submitForm(){
-        driver.get(Utils.BASE_URL);
-        LoginPage loginPage = new LoginPage(driver);
-//        LoginPage.enterFirstName();
-//        LoginPage.enterLastName();
-//        LoginPage.pressSubmitButton();
+    private static LoginPage loginPage = new LoginPage(driver);
+    private static MainPage mainPage = new MainPage(driver);
+
+    @Test(testName = "Empty Project Without Summary")
+    public static void emptyProjectWithoutSummary() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
     }
 
     @AfterSuite
