@@ -37,7 +37,7 @@ public class TestPlan {
     @ParameterizedTest()
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void createIssueForProjectTest(String projectName, String issueType,
-                                            String assertProjectName, String assertIssueType)
+                                          String assertProjectName, String assertIssueType)
     {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -53,9 +53,8 @@ public class TestPlan {
         createIssuePage.clickOnIssueField();
         createIssuePage.setIssueField(issueType);
 
-        Assert.assertTrue(driver.getPageSource().contains(assertProjectName));
-        Assert.assertTrue(driver.getPageSource().contains(assertIssueType));
-
+        createIssuePage.verifyProjectField(assertProjectName);
+        createIssuePage.verifyIssueType(assertIssueType);
     }
 
     @AfterAll

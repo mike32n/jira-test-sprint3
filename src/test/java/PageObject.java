@@ -19,13 +19,13 @@ public class PageObject {
         webElement.click();
     }
 
-    private void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 2)
+    protected void waitForClickable(WebElement webElement) {
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    private void waitForVisibility(WebElement webElement) throws Error {
-        new WebDriverWait(driver, 2)
+    protected void waitForVisibility(WebElement webElement) throws Error {
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 }
