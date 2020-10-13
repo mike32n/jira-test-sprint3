@@ -23,7 +23,7 @@ public class TestPlan {
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/BrowseProjects.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
     public void browseProjectsTest(String URL, String projectKey){
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -31,7 +31,7 @@ public class TestPlan {
         loginPage.setUsername();
         loginPage.setPassword();
         loginPage.clickLoginButton();
-
+        //driver.switchTo().alert().dismiss();
         projectSummaryPage.navigate(URL);
         projectSummaryPage.verifyKey(projectKey);
     }
