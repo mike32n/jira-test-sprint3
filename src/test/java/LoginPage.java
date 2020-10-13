@@ -27,10 +27,12 @@ public class LoginPage extends PageObject {
     }
 
     public void setUsername() {
+        waitForClickable(fieldUsername);
         fieldUsername.sendKeys(Utils.username);
     }
 
     public void setPassword() {
+        waitForClickable(fieldPassword);
         fieldPassword.sendKeys(Utils.password);
     }
 

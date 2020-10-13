@@ -14,18 +14,18 @@ public class PageObject {
         //ajax element locator
     }
     protected void clickOn(WebElement webElement) {
-        waitForVisibility(webElement);
+//        waitForVisibility(webElement);
         waitForClickable(webElement);
         webElement.click();
     }
 
     protected void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitForVisibility(WebElement webElement) throws Error {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 }
