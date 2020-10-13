@@ -1,18 +1,19 @@
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeAll
-    public static void main(String[] args) {
+    public static void setup() {
         // ChromeDriver location set up in Utils class
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
     }
@@ -35,7 +36,9 @@ public class TestPlan {
 */
     @ParameterizedTest()
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
-    public static void createIssueForProject(String projectName, String issueType){
+    public void createIssueForProjectTest(String projectName, String issueType,
+                                            String assertProjectName, String assertIssueType)
+    {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -44,14 +47,15 @@ public class TestPlan {
         loginPage.clickLoginButton();
 
         mainPage.clickCreateButton();
-/*
+
         createIssuePage.clickOnProjectField();
         createIssuePage.setProjectField(projectName);
         createIssuePage.clickOnIssueField();
         createIssuePage.setIssueField(issueType);
- */
 
-        createIssuePage.setValues();
+        Assert.assertTrue(driver.getPageSource().contains(assertProjectName));
+        Assert.assertTrue(driver.getPageSource().contains(assertIssueType));
+
     }
 
     @AfterAll

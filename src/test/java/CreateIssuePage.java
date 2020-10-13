@@ -32,7 +32,7 @@ public class CreateIssuePage extends PageObject {
         issueField.sendKeys(issueType);
         issueField.sendKeys(Keys.ENTER);
     }
-
+/*
     @ParameterizedTest()
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void setValues(String projectName, String issueType){
@@ -41,6 +41,7 @@ public class CreateIssuePage extends PageObject {
         clickOnIssueField();
         setIssueField(issueType);
     }
+*/
 
     public void clickOnIssueField() {
         clickOn(issueField);

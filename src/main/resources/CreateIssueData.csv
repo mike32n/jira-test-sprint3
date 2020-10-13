@@ -1,10 +1,10 @@
-projectName,issueType
-TOUCAN,Story
-TOUCAN,Bug
-TOUCAN,Issue
-JETI,Story
-JETI,Bug
-JETI,Issue
-COALA,Story
-COALA,Bug
-COALA,Issue
+projectName,issueType,assertProjectName,assertIssueType
+TOUCAN,Story,TOUCAN projekt (TOUCAN),Story
+TOUCAN,Bug,TOUCAN projekt (TOUCAN),Bug
+TOUCAN,Issue,TOUCAN projekt (TOUCAN),Issue
+JETI,Story,JETI Project (JETI),Story
+JETI,Bug,JETI Project (JETI),Bug
+JETI,Issue,JETI Project (JETI),Issue
+COALA,Story,COALA Project (COALA),Story
+COALA,Bug,COALA Project (COALA),Bug
+COALA,Issue,COALA Project (COALA),Issue
