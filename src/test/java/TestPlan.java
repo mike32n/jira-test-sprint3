@@ -1,28 +1,42 @@
+import org.junit.Assert;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
 
-    @BeforeSuite
-    public static void main(String[] args) {
+    @BeforeAll
+    public static void setup() {
         // ChromeDriver location set up in Utils class
-        System.setProperty("webdriver.chrome.driver", Utils.CHROME_DRIVER_LOCATION);
+        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        driver.manage().deleteAllCookies();
     }
 
-    @Test(testName = "Submit a WebForm")
-    public static void submitForm(){
-        driver.get(Utils.BASE_URL);
-        LoginPage loginPage = new LoginPage(driver);
-//        LoginPage.enterFirstName();
-//        LoginPage.enterLastName();
-//        LoginPage.pressSubmitButton();
+    private static LoginPage loginPage = new LoginPage(driver);
+    private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/BrowseProjects.csv", numLinesToSkip = 1)
+    public void browseProjectsTest(String URL, String projectKey){
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        projectSummaryPage.navigate(URL);
+        projectSummaryPage.verifyKey(projectKey);
     }
 
-    @AfterSuite
+    @AfterAll
     public static void cleanUp(){
         driver.manage().deleteAllCookies();
         driver.close();
