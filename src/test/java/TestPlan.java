@@ -30,7 +30,6 @@ public class TestPlan {
         loginPage.setUsername();
         loginPage.setPassword();
         loginPage.clickLoginButton();
-        //driver.switchTo().alert().dismiss();
         projectSummaryPage.navigate(URL);
         projectSummaryPage.verifyKey(projectKey);
         createIssuePage.logout();

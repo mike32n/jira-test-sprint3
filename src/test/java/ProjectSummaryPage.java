@@ -7,6 +7,8 @@ public class ProjectSummaryPage extends PageObject {
 
     @FindBy(xpath = "//div[@id='summary-body']/div/div[2]/dl/dd[2]")
     WebElement keyName;
+    @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
+    private WebElement userIcon;
 
     public ProjectSummaryPage(WebDriver driver) {
         super(driver);
@@ -15,6 +17,7 @@ public class ProjectSummaryPage extends PageObject {
 
     @Override
     protected void navigate(String URL) {
+        waitForVisibility(userIcon);
         super.navigate(URL);
     }
 
