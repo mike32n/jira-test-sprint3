@@ -27,17 +27,16 @@ public class LoginPage extends PageObject {
     }
 
     public void setUsername() {
-        waitForVisibility(fieldPassword);
+        waitForClickable(fieldUsername);
         fieldUsername.sendKeys(Utils.username);
     }
 
     public void setPassword() {
-        waitForVisibility(fieldPassword);
+        waitForClickable(fieldPassword);
         fieldPassword.sendKeys(Utils.password);
     }
 
     public void clickLoginButton() {
-        waitForClickable(loginButton);
         clickOn(loginButton);
     }
 }
