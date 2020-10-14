@@ -79,11 +79,13 @@ public class CreateIssuePage extends PageObject {
 //    }
 
     public void verifyProjectField(String projectName) {
-        Assert.assertTrue(driver.getPageSource().contains(projectName));
+        String projectNameValue = projectField.getAttribute("value");
+        Assert.assertEquals(projectName, projectNameValue);
     }
 
     public void verifyIssueType(String issueType) {
-        Assert.assertTrue(driver.getPageSource().contains(issueType));
+        String issueTypeValue = issueField.getAttribute("value");
+        Assert.assertEquals(issueType, issueTypeValue);
     }
 
     public void clickOnSummaryField() {
