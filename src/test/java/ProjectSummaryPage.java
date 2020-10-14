@@ -19,6 +19,6 @@ public class ProjectSummaryPage extends PageObject {
     }
 
     public void verifyKey(String key){
-        Assert.assertEquals(keyName.getText(), key);
+        Assert.assertEquals(key, keyName.getText());
     }
 }

@@ -21,6 +21,7 @@ public class TestPlan {
 
     private static LoginPage loginPage = new LoginPage(driver);
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+    private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
 
     @ParameterizedTest
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
@@ -34,6 +35,7 @@ public class TestPlan {
         //driver.switchTo().alert().dismiss();
         projectSummaryPage.navigate(URL);
         projectSummaryPage.verifyKey(projectKey);
+        createIssuePage.logout();
     }
 
     @AfterAll
