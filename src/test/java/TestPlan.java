@@ -61,6 +61,40 @@ public class TestPlan {
     }
 
     @Test
+    @DisplayName("Login Without Password")
+    public void loginWithoutPassword() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Login Without Credentials")
+    public void loginWithoutCredentials() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("EMPTY Project Without Summary")
     public void emptyProjectWithoutSummary() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -81,6 +115,7 @@ public class TestPlan {
     }
 
     @Test
+    @DisplayName("Create Issue With Required Fields Are Filled")
     public void createIssueWithRequiredFieldsFilled() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -104,6 +139,7 @@ public class TestPlan {
     }
 
     @ParameterizedTest()
+    @DisplayName("Issue Types For Projects")
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void issueTypesForProjectsTest(String projectName, String issueType,
                                           String assertProjectName, String assertIssueType) {
@@ -116,9 +152,7 @@ public class TestPlan {
 
         mainPage.clickCreateButton();
 
-//        createIssuePage.clickOnProjectField();
         createIssuePage.setProjectField(projectName);
-//        createIssuePage.clickOnIssueField();
         createIssuePage.setIssueField(issueType);
 
         createIssuePage.verifyProjectField(assertProjectName);
@@ -129,6 +163,7 @@ public class TestPlan {
     }
   
     @ParameterizedTest
+    @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
     public void browseProjectsTest(String URL, String projectKey){
         loginPage.maximizeWindow();

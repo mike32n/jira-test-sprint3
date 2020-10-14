@@ -27,13 +27,16 @@ public class CreateIssuePage extends PageObject {
     @FindBy(xpath = "//div[@id='aui-flag-container']/div/div/a")
     private WebElement popUpScreen;
 
+    @FindBy(xpath = "//*[@id='description']")
+    private WebElement description;
+
     public CreateIssuePage(WebDriver driver) {
         super(driver);
     }
 
     public void setProjectField(String projectName) {
         clickOn(projectField);
-        waitForClickable(projectField);
+//        waitForClickable(projectField);
         projectField.sendKeys(Keys.DELETE);
         waitForClickable(projectField);
         projectField.sendKeys(projectName);
@@ -45,7 +48,7 @@ public class CreateIssuePage extends PageObject {
 
     public void setIssueField(String issueType) {
         clickOn(issueField);
-        waitForClickable(issueField);
+//        waitForClickable(issueField);
         issueField.sendKeys(Keys.DELETE);
         waitForClickable(issueField);
         issueField.sendKeys(issueType);
@@ -67,6 +70,10 @@ public class CreateIssuePage extends PageObject {
 
     public void clickOnSummaryField() {
         clickOn(summaryField);
+    }
+
+    private void clickOnDescription() {
+        clickOn(description);
     }
 
     public void clickOnCreate() {

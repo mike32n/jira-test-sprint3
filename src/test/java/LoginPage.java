@@ -1,6 +1,9 @@
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.awt.*;
 
 public class LoginPage extends PageObject {
 
@@ -10,6 +13,9 @@ public class LoginPage extends PageObject {
     private WebElement fieldPassword;
     @FindBy(id = "login")
     private WebElement loginButton;
+
+    @FindBy(xpath = "//*[@id='usernameerror']/p")
+    private WebElement errorText;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -50,5 +56,10 @@ public class LoginPage extends PageObject {
 
     public void openAlternativeLoginPage() {
         driver.get(Utils.ALTERNATIVE_LOGIN_PAGE);
+    }
+
+    public void verifyErrorMessage(String error) {
+        waitForVisibility(errorText);
+        Assert.assertEquals(error, errorText.getText());
     }
 }
