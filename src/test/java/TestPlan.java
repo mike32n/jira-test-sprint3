@@ -17,6 +17,7 @@ public class TestPlan {
 
     private static LoginPage loginPage = new LoginPage(driver);
     private static MainPage mainPage = new MainPage(driver);
+    private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
 
@@ -87,6 +88,20 @@ public class TestPlan {
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
+        createIssuePage.logout();
+    }
+  
+    @ParameterizedTest
+    @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
+    public void browseProjectsTest(String URL, String projectKey){
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        projectSummaryPage.navigate(URL);
+        projectSummaryPage.verifyKey(projectKey);
         createIssuePage.logout();
     }
 

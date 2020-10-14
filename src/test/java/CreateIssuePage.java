@@ -124,3 +124,4 @@ public class CreateIssuePage extends PageObject {
         clickOn(popUpScreen);
     }
 }
+
