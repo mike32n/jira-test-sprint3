@@ -1,6 +1,4 @@
 import org.junit.Assert;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,10 +13,10 @@ public class CreateIssuePage extends PageObject {
     private WebElement issueField;
 
     @FindBy(id = "summary")
-    private WebElement summary;
+    private WebElement summaryField;
 
     @FindBy(id = "create-issue-submit")
-    private WebElement submit;
+    private WebElement create;
 
     @FindBy(css = ".error")
     private WebElement errorMessage;
@@ -31,6 +29,9 @@ public class CreateIssuePage extends PageObject {
 
     @FindBy(id = "log_out")
     private WebElement logoutButton;
+
+    @FindBy(xpath = "//div[@id='aui-flag-container']/div/div/a")
+    private WebElement popUpScreen;
 
     public CreateIssuePage(WebDriver driver) {
         super(driver);
@@ -57,6 +58,8 @@ public class CreateIssuePage extends PageObject {
         projectField.sendKeys(projectName);
         waitForClickable(projectField);
         projectField.sendKeys(Keys.ENTER);
+        clickOnSummaryField();
+        waitForClickable(projectField);
     }
 
     public void setIssueField(String issueType) {
@@ -67,6 +70,8 @@ public class CreateIssuePage extends PageObject {
         issueField.sendKeys(issueType);
         waitForClickable(issueField);
         issueField.sendKeys(Keys.ENTER);
+        clickOnSummaryField();
+        waitForClickable(issueField);
     }
 
 //    public void clickOnIssueField() {
@@ -82,11 +87,11 @@ public class CreateIssuePage extends PageObject {
     }
 
     public void clickOnSummaryField() {
-        clickOn(summary);
+        clickOn(summaryField);
     }
 
-    public void clickOnSubmit() {
-        clickOn(submit);
+    public void clickOnCreate() {
+        clickOn(create);
     }
 
     public void verifyErrorMessage() {
@@ -106,5 +111,14 @@ public class CreateIssuePage extends PageObject {
     public void logout() {
         clickOn(userIcon);
         clickOn(logoutButton);
+    }
+
+    public void setSummaryField(String summaryText) {
+        clickOnSummaryField();
+        summaryField.sendKeys(summaryText);
+    }
+
+    public void clickLinkOnPopUpScreen() {
+        clickOn(popUpScreen);
     }
 }

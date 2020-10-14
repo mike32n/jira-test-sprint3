@@ -18,6 +18,7 @@ public class TestPlan {
     private static LoginPage loginPage = new LoginPage(driver);
     private static MainPage mainPage = new MainPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
+    private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
 
     @Test
     public void emptyProjectWithoutSummary() {
@@ -31,8 +32,8 @@ public class TestPlan {
         mainPage.clickCreateButton();
 
         createIssuePage.setProjectField("EMPTY");
-        createIssuePage.clickOnSummaryField();
-        createIssuePage.clickOnSubmit();
+//        createIssuePage.clickOnSummaryField();
+        createIssuePage.clickOnCreate();
         createIssuePage.verifyErrorMessage();
 
         createIssuePage.clickOnCancel();
@@ -40,9 +41,33 @@ public class TestPlan {
         createIssuePage.logout();
     }
 
+    @Test
+    public void createIssueWithRequiredFieldsFilled() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField("MTP");
+        createIssuePage.setIssueField("Task");
+//        createIssuePage.clickOnSummaryField();
+        createIssuePage.setSummaryField("Testing \"Create Issue\" with all required fields are filled");
+        createIssuePage.clickOnCreate();
+        createIssuePage.clickLinkOnPopUpScreen();
+
+        issueDetailPage.verifySummary("Testing \"Create Issue\" with all required fields are filled");
+        issueDetailPage.deleteIssue();
+
+        createIssuePage.logout();
+    }
+
     @ParameterizedTest()
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
-    public void createIssueForProjectTest(String projectName, String issueType,
+    public void issueTypesForProjectsTest(String projectName, String issueType,
                                           String assertProjectName, String assertIssueType) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
