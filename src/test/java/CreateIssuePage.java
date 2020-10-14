@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class CreateIssuePage extends PageObject {
 
-    @FindBy(id = "project-field")
+    @FindBy(xpath = "//*[@id='project-field']")
     private WebElement projectField;
 
-    @FindBy(id = "issuetype-field")
+    @FindBy(xpath = "//*[@id='issuetype-field']")
     private WebElement issueField;
 
-    @FindBy(id = "summary")
+    @FindBy(xpath = "//*[@id='summary']")
     private WebElement summaryField;
 
     @FindBy(id = "create-issue-submit")
