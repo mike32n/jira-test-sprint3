@@ -1,29 +1,97 @@
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
 
-    @BeforeSuite
-    public static void main(String[] args) {
+    @BeforeAll
+    public static void setup() {
         // ChromeDriver location set up in Utils class
-        System.setProperty("webdriver.chrome.driver", Utils.CHROME_DRIVER_LOCATION);
+        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
     }
 
-    @Test(testName = "Submit a WebForm")
-    public static void submitForm(){
-        driver.get(Utils.BASE_URL);
-        LoginPage loginPage = new LoginPage(driver);
-//        LoginPage.enterFirstName();
-//        LoginPage.enterLastName();
-//        LoginPage.pressSubmitButton();
+    private static LoginPage loginPage = new LoginPage(driver);
+    private static MainPage mainPage = new MainPage(driver);
+    private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
+    private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
+
+    @Test
+    public void emptyProjectWithoutSummary() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField("EMPTY");
+//        createIssuePage.clickOnSummaryField();
+        createIssuePage.clickOnCreate();
+        createIssuePage.verifyErrorMessage();
+
+        createIssuePage.clickOnCancel();
+        createIssuePage.acceptAlert();
+        createIssuePage.logout();
     }
 
-    @AfterSuite
-    public static void cleanUp(){
+    @Test
+    public void createIssueWithRequiredFieldsFilled() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField("MTP");
+        createIssuePage.setIssueField("Task");
+//        createIssuePage.clickOnSummaryField();
+        createIssuePage.setSummaryField("Testing \"Create Issue\" with all required fields are filled");
+        createIssuePage.clickOnCreate();
+        createIssuePage.clickLinkOnPopUpScreen();
+
+        issueDetailPage.verifySummary("Testing \"Create Issue\" with all required fields are filled");
+        issueDetailPage.deleteIssue();
+
+        createIssuePage.logout();
+    }
+
+    @ParameterizedTest()
+    @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
+    public void issueTypesForProjectsTest(String projectName, String issueType,
+                                          String assertProjectName, String assertIssueType) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+//        createIssuePage.clickOnProjectField();
+        createIssuePage.setProjectField(projectName);
+//        createIssuePage.clickOnIssueField();
+        createIssuePage.setIssueField(issueType);
+
+        createIssuePage.verifyProjectField(assertProjectName);
+        createIssuePage.verifyIssueType(assertIssueType);
+
+        createIssuePage.clickOnCancel();
+        createIssuePage.logout();
+    }
+
+    @AfterAll
+    public static void cleanUp() {
         driver.manage().deleteAllCookies();
         driver.close();
     }
