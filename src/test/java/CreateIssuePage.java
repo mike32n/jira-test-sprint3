@@ -15,19 +15,19 @@ public class CreateIssuePage extends PageObject {
     @FindBy(xpath = "//*[@id='summary']")
     private WebElement summaryField;
 
-    @FindBy(id = "create-issue-submit")
+    @FindBy(xpath = "//*[@id='create-issue-submit']")
     private WebElement create;
 
     @FindBy(css = ".error")
     private WebElement errorMessage;
 
-    @FindBy(linkText = "Cancel")
+    @FindBy(xpath = "//*[@id='create-issue-dialog']//a[contains(text(), 'Cancel')]")
     private WebElement cancel;
 
     @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
     private WebElement userIcon;
 
-    @FindBy(id = "log_out")
+    @FindBy(xpath = "//*[@id='log_out']")
     private WebElement logoutButton;
 
     @FindBy(xpath = "//div[@id='aui-flag-container']/div/div/a")
