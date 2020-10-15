@@ -25,6 +25,7 @@ public class TestPlan {
     private static EditIssuePage editIssuePage = new EditIssuePage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
     private static ReleasesPage releasesPage = new ReleasesPage(driver);
+    private static ComponentsPage componentsPage = new ComponentsPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
     @ParameterizedTest()
@@ -306,6 +307,28 @@ public class TestPlan {
         issueDetailPage.verifyEditedSummary("Test issue");
 
         mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Glass Components")
+    public void glassComponentsTest(){
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+        projectConfigPageGlass.clickOnSideBarComponentIcon();
+        componentsPage.setComponentNameField("glass test");
+        componentsPage.setDescriptionField("this is a test");
+        componentsPage.setDefaultAssigneeField("Project default (Project lead)");
+        componentsPage.clickAddButton();
+        mainPage.navigate(Utils.GLASS_URL);
+        projectConfigPageGlass.verifyNewGlassComponent();
+        projectConfigPageGlass.clickOnSideBarComponentIcon();
+        componentsPage.deleteComponent();
     }
 
     @AfterAll
