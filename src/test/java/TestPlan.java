@@ -225,13 +225,13 @@ public class TestPlan {
         editIssuePage.setSummaryField("This is a test for editing issues");
         editIssuePage.clickOnUpdate();
 
-        issueDetailPage.verifySummary("This is a test for editing issues");
+        issueDetailPage.verifyEditedSummary("This is a test for editing issues");
 
         issueDetailPage.clickOnEdit();
         editIssuePage.setSummaryField("Test issue");
         editIssuePage.clickOnUpdate();
 
-        issueDetailPage.verifySummary("Test issue");
+        issueDetailPage.verifyEditedSummary("Test issue");
 
         mainPage.logout();
     }
