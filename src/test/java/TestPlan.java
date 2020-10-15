@@ -23,6 +23,7 @@ public class TestPlan {
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
+    private static EditIssuePage editIssuePage = new EditIssuePage(driver);
 
     @ParameterizedTest()
     @DisplayName("Successful Login")
@@ -204,6 +205,33 @@ public class TestPlan {
 
         issueDetailPage.navigate(URL);
         issueDetailPage.verifyIssueKey(issueKey);
+
+        mainPage.logout();
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
+    public void editIssuesTest(String URL){
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        projectSummaryPage.navigate(URL);
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("This is a test for editing issues");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifySummary("This is a test for editing issues");
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("Test issue");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifySummary("Test issue");
 
         mainPage.logout();
     }

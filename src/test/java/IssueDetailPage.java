@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class IssueDetailPage extends PageObject {
 
-    @FindBy(id = "summary-val")
+    @FindBy(xpath = "//*[@id='summary-val']")
     private WebElement summary;
 
     @FindBy(xpath = "//a[@id='opsbar-operations_more']/span")
@@ -23,14 +23,20 @@ public class IssueDetailPage extends PageObject {
     @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
     private WebElement userIcon;
 
+    @FindBy(xpath = "//*[@id='edit-issue']")
+    private WebElement editButton;
+
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
+    private WebElement popUpScreen;
+
     public IssueDetailPage(WebDriver driver) {
         super(driver);
     }
 
     public void verifySummary(String summaryText) {
-        waitForVisibility(summary);
+        waitForVisibility(popUpScreen);
         String issueSummary = summary.getText();
-        Assert.assertEquals(summaryText, issueSummary);
+        Assert.assertEquals(issueSummary, summaryText);
     }
 
     public void deleteIssue() {
@@ -48,5 +54,9 @@ public class IssueDetailPage extends PageObject {
     public void verifyIssueKey(String issueKey){
         String issue = issueKeycode.getText();
         Assert.assertEquals(issueKey, issue);
+    }
+
+    public void clickOnEdit() {
+        clickOn(editButton);
     }
 }
