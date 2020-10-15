@@ -28,6 +28,7 @@ public class TestPlan {
     private static ProfilePage profilePage = new ProfilePage(driver);
     private static ReleasesPage releasesPage = new ReleasesPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
+    private static ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver);
 
     @ParameterizedTest()
     @DisplayName("Successful Login")
@@ -270,6 +271,34 @@ public class TestPlan {
         projectConfigPageGlass.clickOnsideBarShipIcon();
 
         releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Glass Issue Type Scheme")
+    public void glassIssueTypeSchemeTest() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnProjectSettingButton();
+
+        projectSettingsPage.verifyIssueTypes();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnSchemeTab();
+        projectConfigPageGlass.verifyScheme();
+
+        projectConfigPageGlass.clickOnIssueTypeDropdown();
+        projectConfigPageGlass.verifyIssueTypes();
 
         mainPage.logout();
     }
