@@ -30,7 +30,7 @@ public class IssueDetailPage extends PageObject {
     public void verifySummary(String summaryText) {
         waitForVisibility(summary);
         String issueSummary = summary.getText();
-        Assert.assertEquals(issueSummary, summaryText);
+        Assert.assertEquals(summaryText, issueSummary);
     }
 
     public void deleteIssue() {
