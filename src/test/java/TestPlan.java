@@ -4,11 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.io.IOException;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
@@ -25,6 +22,7 @@ public class TestPlan {
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
+    private static EditIssuePage editIssuePage = new EditIssuePage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
     private static ReleasesPage releasesPage = new ReleasesPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
@@ -179,7 +177,14 @@ public class TestPlan {
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
-        mainPage.logout();
+        try {
+            createIssuePage.acceptAlert();
+            mainPage.logout();
+        } catch (Exception ignore) {
+            mainPage.logout();
+        }
+
+
     }
   
     @ParameterizedTest
@@ -198,6 +203,7 @@ public class TestPlan {
     }
 
     @ParameterizedTest
+    @DisplayName("Browse Issues")
     @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
     public void browseIssuesTest(String URL, String issueKey){
         loginPage.maximizeWindow();
@@ -270,6 +276,34 @@ public class TestPlan {
         projectConfigPageGlass.clickOnsideBarShipIcon();
 
         releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
+
+    @ParameterizedTest
+    @DisplayName("Edit Issues")
+    @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
+    public void editIssuesTest(String URL) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        projectSummaryPage.navigate(URL);
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("This is a test for editing issues");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifyEditedSummary("This is a test for editing issues");
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("Test issue");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifyEditedSummary("Test issue");
 
         mainPage.logout();
     }
