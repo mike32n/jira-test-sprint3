@@ -4,8 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.IOException;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
@@ -23,6 +26,8 @@ public class TestPlan {
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
+    private static ReleasesPage releasesPage = new ReleasesPage(driver);
+    private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
     @ParameterizedTest()
     @DisplayName("Successful Login")
@@ -204,6 +209,35 @@ public class TestPlan {
 
         issueDetailPage.navigate(URL);
         issueDetailPage.verifyIssueKey(issueKey);
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("New Project Version In Glass (Empty Optional Fields)")
+    public void newProjectVersionInGlassEmptyOptionalFields() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+
+        releasesPage.deleteNewTestVersion();
 
         mainPage.logout();
     }
