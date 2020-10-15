@@ -177,6 +177,22 @@ public class TestPlan {
         mainPage.logout();
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
+    public void browseIssuesTest(String URL, String issueKey){
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        issueDetailPage.navigate(URL);
+        issueDetailPage.verifyIssueKey(issueKey);
+
+        createIssuePage.logout();
+    }
+
     @AfterAll
     public static void cleanUp() {
         driver.manage().deleteAllCookies();

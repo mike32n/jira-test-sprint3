@@ -17,6 +17,12 @@ public class IssueDetailPage extends PageObject {
     @FindBy(id = "delete-issue-submit")
     private WebElement confirmDelete;
 
+    @FindBy(xpath = "//*[@id='key-val']")
+    private WebElement issueKeycode;
+
+    @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
+    private WebElement userIcon;
+
     public IssueDetailPage(WebDriver driver) {
         super(driver);
     }
@@ -31,5 +37,16 @@ public class IssueDetailPage extends PageObject {
         clickOn(more);
         clickOn(delete);
         clickOn(confirmDelete);
+    }
+
+    @Override
+    protected void navigate(String URL) {
+        waitForVisibility(userIcon);
+        super.navigate(URL);
+    }
+
+    public void verifyIssueKey(String issueKey){
+        String issue = issueKeycode.getText();
+        Assert.assertEquals(issueKey, issue);
     }
 }
