@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,9 @@ public class MainPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='log_out']")
     private WebElement logoutButton;
+
+    @FindBy(xpath = "//*[@id='content']//strong")
+    private WebElement logoutMessage;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -30,5 +34,10 @@ public class MainPage extends PageObject {
     public void logout() {
         clickOn(userIcon);
         clickOn(logoutButton);
+    }
+
+    public void verifySuccessfulLogout() {
+        waitForVisibility(logoutMessage);
+        Assert.assertTrue(logoutMessage.getText().startsWith("You are now logged out."));
     }
 }

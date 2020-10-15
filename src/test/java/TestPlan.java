@@ -94,6 +94,21 @@ public class TestPlan {
     }
 
     @Test
+    @DisplayName("Successful Logout")
+    public void successfulLogout() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.logout();
+
+        mainPage.verifySuccessfulLogout();
+    }
+
+    @Test
     @DisplayName("EMPTY Project Without Summary")
     public void emptyProjectWithoutSummary() {
         loginPage.maximizeWindow();
