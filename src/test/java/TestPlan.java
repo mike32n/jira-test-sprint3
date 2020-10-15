@@ -190,7 +190,7 @@ public class TestPlan {
         issueDetailPage.navigate(URL);
         issueDetailPage.verifyIssueKey(issueKey);
 
-        createIssuePage.logout();
+        mainPage.logout();
     }
 
     @AfterAll
