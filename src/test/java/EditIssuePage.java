@@ -23,11 +23,8 @@ public class EditIssuePage extends PageObject{
 
 
     public void setSummaryField(String summaryText) {
-        waitForLoad(driver);
-        clickOnSummaryField();
-        waitForLoad(driver);
+        waitForClickable(summaryField);
         summaryField.clear();
-        waitForLoad(driver);
         summaryField.sendKeys(summaryText);
 
     }

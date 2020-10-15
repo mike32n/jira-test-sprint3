@@ -132,7 +132,7 @@ public class TestPlan {
 
     @Test
     @DisplayName("Create Issue With Required Fields Are Filled")
-    public void createIssueWithRequiredFieldsFilled() throws InterruptedException {
+    public void createIssueWithRequiredFieldsFilled() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -211,7 +211,7 @@ public class TestPlan {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
-    public void editIssuesTest(String URL) throws InterruptedException {
+    public void editIssuesTest(String URL) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 

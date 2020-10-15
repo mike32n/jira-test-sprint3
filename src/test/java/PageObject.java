@@ -33,11 +33,5 @@ public class PageObject {
     protected void navigate(String URL){
         driver.get(URL);
     }
-
-    public void waitForLoad(WebDriver driver) {
-        ExpectedCondition<Boolean> pageLoadCondition = driver1 -> ((JavascriptExecutor) driver1).executeScript("return document.readyState").equals("complete");
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(pageLoadCondition);
-    }
 }
 

@@ -31,28 +31,19 @@ public class IssueDetailPage extends PageObject {
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
     private WebElement popUpScreen;
 
-    @FindBy(xpath = "//*[@id='project-avatar']")
-    private WebElement projectIcon;
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/span")
+    private WebElement popUpClose;
 
     public IssueDetailPage(WebDriver driver) {
         super(driver);
     }
 
-    public void verifySummary(String summaryText) throws InterruptedException {
+    public void verifySummary(String summaryText) {
+        clickOn(popUpScreen);
+        clickOn(popUpClose);
         waitForVisibility(summary);
-        waitForVisibility(projectIcon);
-        waitForVisibility(editButton);
-        waitForLoad(driver);
         String issueSummary = summary.getText();
-        waitForVisibility(summary);
-        waitForVisibility(projectIcon);
-        waitForVisibility(editButton);
-        waitForLoad(driver);
         Assert.assertEquals(summaryText, issueSummary);
-        waitForVisibility(summary);
-        waitForVisibility(projectIcon);
-        waitForVisibility(editButton);
-        waitForLoad(driver);
     }
 
     public void deleteIssue() {
