@@ -14,7 +14,6 @@ public class PageObject {
         //ajax element locator
     }
     protected void clickOn(WebElement webElement) {
-//        waitForVisibility(webElement);
         waitForClickable(webElement);
         webElement.click();
     }
@@ -28,4 +27,9 @@ public class PageObject {
         new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
+  
+    protected void navigate(String URL){
+        driver.get(URL);
+    }
 }
+
