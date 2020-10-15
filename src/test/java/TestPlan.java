@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -16,12 +17,84 @@ public class TestPlan {
     }
 
     private static LoginPage loginPage = new LoginPage(driver);
+    private static AltLoginPage altLoginPage = new AltLoginPage(driver);
     private static MainPage mainPage = new MainPage(driver);
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
+    private static ProfilePage profilePage = new ProfilePage(driver);
+
+    @ParameterizedTest()
+    @DisplayName("Successful Login")
+    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
+    public void successfulLogin(String user, String pass) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername(user);
+        loginPage.setPassword(pass);
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.PROFILE_PAGE);
+
+        profilePage.verifyUsername(user);
+
+        mainPage.logout();
+    }
+
+    @ParameterizedTest()
+    @DisplayName("Alternative Login")
+    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
+    public void alternativeLogin(String user, String pass) {
+        loginPage.maximizeWindow();
+        loginPage.openAlternativeLoginPage();
+
+        altLoginPage.setUsername(user);
+        altLoginPage.setPassword(pass);
+        altLoginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.PROFILE_PAGE);
+
+        profilePage.verifyUsername(user);
+
+        mainPage.logout();
+    }
 
     @Test
+    @DisplayName("Login Without Password")
+    public void loginWithoutPassword() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Login Without Credentials")
+    public void loginWithoutCredentials() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("EMPTY Project Without Summary")
     public void emptyProjectWithoutSummary() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -33,16 +106,16 @@ public class TestPlan {
         mainPage.clickCreateButton();
 
         createIssuePage.setProjectField("EMPTY");
-//        createIssuePage.clickOnSummaryField();
         createIssuePage.clickOnCreate();
         createIssuePage.verifyErrorMessage();
 
         createIssuePage.clickOnCancel();
         createIssuePage.acceptAlert();
-        createIssuePage.logout();
+        mainPage.logout();
     }
 
     @Test
+    @DisplayName("Create Issue With Required Fields Are Filled")
     public void createIssueWithRequiredFieldsFilled() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
@@ -55,7 +128,6 @@ public class TestPlan {
 
         createIssuePage.setProjectField("MTP");
         createIssuePage.setIssueField("Task");
-//        createIssuePage.clickOnSummaryField();
         createIssuePage.setSummaryField("Testing \"Create Issue\" with all required fields are filled");
         createIssuePage.clickOnCreate();
         createIssuePage.clickLinkOnPopUpScreen();
@@ -63,10 +135,11 @@ public class TestPlan {
         issueDetailPage.verifySummary("Testing \"Create Issue\" with all required fields are filled");
         issueDetailPage.deleteIssue();
 
-        createIssuePage.logout();
+        mainPage.logout();
     }
 
     @ParameterizedTest()
+    @DisplayName("Issue Types For Projects")
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void issueTypesForProjectsTest(String projectName, String issueType,
                                           String assertProjectName, String assertIssueType) {
@@ -79,19 +152,18 @@ public class TestPlan {
 
         mainPage.clickCreateButton();
 
-//        createIssuePage.clickOnProjectField();
         createIssuePage.setProjectField(projectName);
-//        createIssuePage.clickOnIssueField();
         createIssuePage.setIssueField(issueType);
 
         createIssuePage.verifyProjectField(assertProjectName);
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
-        createIssuePage.logout();
+        mainPage.logout();
     }
   
     @ParameterizedTest
+    @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
     public void browseProjectsTest(String URL, String projectKey){
         loginPage.maximizeWindow();
@@ -102,7 +174,7 @@ public class TestPlan {
         loginPage.clickLoginButton();
         projectSummaryPage.navigate(URL);
         projectSummaryPage.verifyKey(projectKey);
-        createIssuePage.logout();
+        mainPage.logout();
     }
 
     @AfterAll

@@ -24,35 +24,19 @@ public class CreateIssuePage extends PageObject {
     @FindBy(xpath = "//*[@id='create-issue-dialog']//a[contains(text(), 'Cancel')]")
     private WebElement cancel;
 
-    @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
-    private WebElement userIcon;
-
-    @FindBy(xpath = "//*[@id='log_out']")
-    private WebElement logoutButton;
-
     @FindBy(xpath = "//div[@id='aui-flag-container']/div/div/a")
     private WebElement popUpScreen;
+
+    @FindBy(xpath = "//*[@id='description']")
+    private WebElement description;
 
     public CreateIssuePage(WebDriver driver) {
         super(driver);
     }
 
-//    public void clickOnProjectField() {
-//        clickOn(projectField);
-//    }
-
-    //    public void setProjectField(String projectName) {
-//        waitForClickable(issueField);
-//        projectField.sendKeys(Keys.DELETE);
-//        waitForClickable(issueField);
-//        projectField.sendKeys(projectName);
-//        waitForClickable(projectField);
-//        projectField.sendKeys(Keys.ENTER);
-//        waitForClickable(issueField);
-//    }
     public void setProjectField(String projectName) {
         clickOn(projectField);
-        waitForClickable(projectField);
+//        waitForClickable(projectField);
         projectField.sendKeys(Keys.DELETE);
         waitForClickable(projectField);
         projectField.sendKeys(projectName);
@@ -64,7 +48,7 @@ public class CreateIssuePage extends PageObject {
 
     public void setIssueField(String issueType) {
         clickOn(issueField);
-        waitForClickable(issueField);
+//        waitForClickable(issueField);
         issueField.sendKeys(Keys.DELETE);
         waitForClickable(issueField);
         issueField.sendKeys(issueType);
@@ -73,10 +57,6 @@ public class CreateIssuePage extends PageObject {
         clickOnSummaryField();
         waitForClickable(issueField);
     }
-
-//    public void clickOnIssueField() {
-//        clickOn(issueField);
-//    }
 
     public void verifyProjectField(String projectName) {
         String projectNameValue = projectField.getAttribute("value");
@@ -90,6 +70,10 @@ public class CreateIssuePage extends PageObject {
 
     public void clickOnSummaryField() {
         clickOn(summaryField);
+    }
+
+    private void clickOnDescription() {
+        clickOn(description);
     }
 
     public void clickOnCreate() {
@@ -108,11 +92,6 @@ public class CreateIssuePage extends PageObject {
 
     public void acceptAlert() {
         driver.switchTo().alert().accept();
-    }
-
-    public void logout() {
-        clickOn(userIcon);
-        clickOn(logoutButton);
     }
 
     public void setSummaryField(String summaryText) {
