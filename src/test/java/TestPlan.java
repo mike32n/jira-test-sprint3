@@ -242,6 +242,38 @@ public class TestPlan {
         mainPage.logout();
     }
 
+    @Test
+    @DisplayName("New Project Version In Glass")
+    public void newProjectVersionInGlass() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.setStartDate("1/oct/20");
+        releasesPage.setReleaseDate("31/oct/20");
+        releasesPage.setDescription("Test Description");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+
+        releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
+
     @AfterAll
     public static void cleanUp() {
         driver.manage().deleteAllCookies();
