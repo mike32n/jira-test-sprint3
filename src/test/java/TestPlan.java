@@ -4,8 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.IOException;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
@@ -23,7 +26,8 @@ public class TestPlan {
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
-    private static EditIssuePage editIssuePage = new EditIssuePage(driver);
+    private static ReleasesPage releasesPage = new ReleasesPage(driver);
+    private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
     @ParameterizedTest()
     @DisplayName("Successful Login")
@@ -209,9 +213,10 @@ public class TestPlan {
         mainPage.logout();
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
-    public void editIssuesTest(String URL) {
+    @Test
+    @DisplayName("New Project Version In Glass (Empty Optional Fields)")
+    public void newProjectVersionInGlassEmptyOptionalFields() {
+
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -219,19 +224,52 @@ public class TestPlan {
         loginPage.setPassword();
         loginPage.clickLoginButton();
 
-        projectSummaryPage.navigate(URL);
+        mainPage.navigate(Utils.GLASS_URL);
 
-        issueDetailPage.clickOnEdit();
-        editIssuePage.setSummaryField("This is a test for editing issues");
-        editIssuePage.clickOnUpdate();
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
 
-        issueDetailPage.verifyEditedSummary("This is a test for editing issues");
+        mainPage.navigate(Utils.GLASS_URL);
 
-        issueDetailPage.clickOnEdit();
-        editIssuePage.setSummaryField("Test issue");
-        editIssuePage.clickOnUpdate();
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
 
-        issueDetailPage.verifyEditedSummary("Test issue");
+        releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("New Project Version In Glass")
+    public void newProjectVersionInGlass() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.setStartDate("1/oct/20");
+        releasesPage.setReleaseDate("31/oct/20");
+        releasesPage.setDescription("Test Description");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+
+        releasesPage.deleteNewTestVersion();
 
         mainPage.logout();
     }
