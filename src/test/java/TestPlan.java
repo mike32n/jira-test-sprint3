@@ -20,6 +20,7 @@ public class TestPlan {
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
     private static MainPage mainPage = new MainPage(driver);
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+    private static ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
     private static EditIssuePage editIssuePage = new EditIssuePage(driver);
@@ -129,7 +130,6 @@ public class TestPlan {
         createIssuePage.verifyErrorMessage();
 
         createIssuePage.clickOnCancel();
-        createIssuePage.acceptAlert();
         mainPage.logout();
     }
 
@@ -178,12 +178,7 @@ public class TestPlan {
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
-        try {
-            createIssuePage.acceptAlert();
-            mainPage.logout();
-        } catch (Exception ignore) {
-            mainPage.logout();
-        }
+        mainPage.logout();
 
 
     }
@@ -329,6 +324,34 @@ public class TestPlan {
         projectConfigPageGlass.verifyNewGlassComponent();
         projectConfigPageGlass.clickOnSideBarComponentIcon();
         componentsPage.deleteComponent();
+    }
+
+    @Test
+    @DisplayName("Glass Issue Type Scheme")
+    public void glassIssueTypeSchemeTest() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnProjectSettingButton();
+
+        projectSettingsPage.verifyIssueTypes();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnSchemeTab();
+        projectConfigPageGlass.verifyScheme();
+
+        projectConfigPageGlass.clickOnIssueTypeDropdown();
+        projectConfigPageGlass.verifyIssueTypes();
+
+        mainPage.logout();
     }
 
     @AfterAll

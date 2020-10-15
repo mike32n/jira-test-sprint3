@@ -88,6 +88,9 @@ public class CreateIssuePage extends PageObject {
 
     public void clickOnCancel() {
         clickOn(cancel);
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {}
     }
 
     public void acceptAlert() {
