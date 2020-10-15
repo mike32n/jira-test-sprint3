@@ -16,15 +16,20 @@ public class EditIssuePage extends PageObject{
     }
 
     public void clickOnSummaryField() {
+        waitForVisibility(updateButton);
         clickOn(summaryField);
+        waitForVisibility(updateButton);
     }
 
 
     public void setSummaryField(String summaryText) {
+        waitForLoad(driver);
         clickOnSummaryField();
+        waitForLoad(driver);
         summaryField.clear();
+        waitForLoad(driver);
         summaryField.sendKeys(summaryText);
-        waitForVisibility(summaryField);
+
     }
 
     public void clickOnUpdate() {

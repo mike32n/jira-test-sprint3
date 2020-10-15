@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 public class IssueDetailPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='summary-val']")
@@ -29,14 +31,28 @@ public class IssueDetailPage extends PageObject {
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
     private WebElement popUpScreen;
 
+    @FindBy(xpath = "//*[@id='project-avatar']")
+    private WebElement projectIcon;
+
     public IssueDetailPage(WebDriver driver) {
         super(driver);
     }
 
-    public void verifySummary(String summaryText) {
+    public void verifySummary(String summaryText) throws InterruptedException {
         waitForVisibility(summary);
+        waitForVisibility(projectIcon);
+        waitForVisibility(editButton);
+        waitForLoad(driver);
         String issueSummary = summary.getText();
+        waitForVisibility(summary);
+        waitForVisibility(projectIcon);
+        waitForVisibility(editButton);
+        waitForLoad(driver);
         Assert.assertEquals(summaryText, issueSummary);
+        waitForVisibility(summary);
+        waitForVisibility(projectIcon);
+        waitForVisibility(editButton);
+        waitForLoad(driver);
     }
 
     public void deleteIssue() {
