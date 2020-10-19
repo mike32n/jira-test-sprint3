@@ -64,7 +64,7 @@ public class IssueDetailPage extends PageObject {
         super.navigate(URL);
     }
 
-    public void verifyIssueKey(String issueKey){
+    public void verifyIssueKey(String issueKey) {
         String issue = issueKeycode.getText();
         Assert.assertEquals(issueKey, issue);
     }

@@ -182,11 +182,11 @@ public class TestPlan {
 
 
     }
-  
+
     @ParameterizedTest
     @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
-    public void browseProjectsTest(String URL, String projectKey){
+    public void browseProjectsTest(String URL, String projectKey) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -201,7 +201,7 @@ public class TestPlan {
     @ParameterizedTest
     @DisplayName("Browse Issues")
     @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
-    public void browseIssuesTest(String URL, String issueKey){
+    public void browseIssuesTest(String URL, String issueKey) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -306,7 +306,7 @@ public class TestPlan {
 
     @Test
     @DisplayName("Glass Components")
-    public void glassComponentsTest(){
+    public void glassComponentsTest() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 

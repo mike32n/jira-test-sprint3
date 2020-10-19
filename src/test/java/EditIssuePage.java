@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class EditIssuePage extends PageObject{
+public class EditIssuePage extends PageObject {
 
 
     @FindBy(xpath = "//*[@id='edit-issue-submit']")
@@ -14,13 +14,6 @@ public class EditIssuePage extends PageObject{
     public EditIssuePage(WebDriver driver) {
         super(driver);
     }
-
-    public void clickOnSummaryField() {
-        waitForVisibility(updateButton);
-        clickOn(summaryField);
-        waitForVisibility(updateButton);
-    }
-
 
     public void setSummaryField(String summaryText) {
         waitForClickable(summaryField);

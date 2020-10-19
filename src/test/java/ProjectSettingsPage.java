@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProjectSettingsPage extends PageObject{
+public class ProjectSettingsPage extends PageObject {
 
     @FindBy(xpath = "(//a[contains(text(),'Bug')])[2]")
     private WebElement bug;
@@ -27,12 +27,12 @@ public class ProjectSettingsPage extends PageObject{
         super(driver);
     }
 
-    public void verifyIssueTypes(){
+    public void verifyIssueTypes() {
         Assert.assertEquals(bug.getText(), "Bug");
-        Assert.assertEquals(epic.getText(),"Epic");
-        Assert.assertEquals(story.getText(),"Story");
-        Assert.assertEquals(subTask.getText(),"Sub-task");
-        Assert.assertEquals(task.getText(),"Task");
-        Assert.assertEquals(issueTypeScheme.getText(),"PP1: Scrum Issue Type Scheme");
+        Assert.assertEquals(epic.getText(), "Epic");
+        Assert.assertEquals(story.getText(), "Story");
+        Assert.assertEquals(subTask.getText(), "Sub-task");
+        Assert.assertEquals(task.getText(), "Task");
+        Assert.assertEquals(issueTypeScheme.getText(), "PP1: Scrum Issue Type Scheme");
     }
 }

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProjectConfigPageGlass extends PageObject{
+public class ProjectConfigPageGlass extends PageObject {
 
     @FindBy(xpath = "//*[@id='content']//nav/div/div[2]/ul/li[3]/a")
     private WebElement sideBarShipIcon;
@@ -57,7 +57,7 @@ public class ProjectConfigPageGlass extends PageObject{
         clickOn(versionsTab);
     }
 
-    public void clickOnSideBarComponentIcon(){
+    public void clickOnSideBarComponentIcon() {
         clickOn(sideBarComponentIcon);
     }
 
@@ -67,14 +67,14 @@ public class ProjectConfigPageGlass extends PageObject{
     }
 
     public void verifyNewGlassComponent() {
-        Assert.assertEquals(driver.findElement(By.xpath("//td[contains(.,'glass test')]")).getText(),"glass test");
+        Assert.assertEquals(driver.findElement(By.xpath("//td[contains(.,'glass test')]")).getText(), "glass test");
     }
 
-    public void clickOnProjectSettingButton(){
+    public void clickOnProjectSettingButton() {
         clickOn(projectSettingButton);
     }
 
-    public void verifyScheme(){
+    public void verifyScheme() {
         Assert.assertEquals("PP1: Scrum Issue Type Scheme", schemeType.getText());
     }
 
@@ -82,13 +82,13 @@ public class ProjectConfigPageGlass extends PageObject{
         clickOn(schemeTab);
     }
 
-    public void clickOnIssueTypeDropdown(){
+    public void clickOnIssueTypeDropdown() {
         clickOn(issueTypes);
     }
 
-    public void verifyIssueTypes(){
-        Assert.assertEquals(bug.getText(),"Bug");
-        Assert.assertEquals(epic.getText(),"Epic");
+    public void verifyIssueTypes() {
+        Assert.assertEquals(bug.getText(), "Bug");
+        Assert.assertEquals(epic.getText(), "Epic");
         Assert.assertEquals(story.getText(), "Story");
         Assert.assertEquals(task.getText(), "Task");
         Assert.assertEquals(subTask.getText(), "Sub-task");

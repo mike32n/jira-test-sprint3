@@ -36,7 +36,6 @@ public class CreateIssuePage extends PageObject {
 
     public void setProjectField(String projectName) {
         clickOn(projectField);
-//        waitForClickable(projectField);
         projectField.sendKeys(Keys.DELETE);
         waitForClickable(projectField);
         projectField.sendKeys(projectName);
@@ -48,7 +47,6 @@ public class CreateIssuePage extends PageObject {
 
     public void setIssueField(String issueType) {
         clickOn(issueField);
-//        waitForClickable(issueField);
         issueField.sendKeys(Keys.DELETE);
         waitForClickable(issueField);
         issueField.sendKeys(issueType);
@@ -72,10 +70,6 @@ public class CreateIssuePage extends PageObject {
         clickOn(summaryField);
     }
 
-    private void clickOnDescription() {
-        clickOn(description);
-    }
-
     public void clickOnCreate() {
         clickOn(create);
     }
@@ -90,7 +84,8 @@ public class CreateIssuePage extends PageObject {
         clickOn(cancel);
         try {
             acceptAlert();
-        } catch (Exception ignore) {}
+        } catch (Exception ignore) {
+        }
     }
 
     public void acceptAlert() {

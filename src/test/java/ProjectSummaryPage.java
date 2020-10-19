@@ -22,7 +22,7 @@ public class ProjectSummaryPage extends PageObject {
         super.navigate(URL);
     }
 
-    public void verifyKey(String key){
+    public void verifyKey(String key) {
         Assert.assertEquals(key, keyName.getText());
     }
 }

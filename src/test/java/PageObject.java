@@ -1,8 +1,6 @@
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,6 +13,7 @@ public class PageObject {
 
         //ajax element locator
     }
+
     protected void clickOn(WebElement webElement) {
         waitForClickable(webElement);
         webElement.click();
@@ -29,8 +28,8 @@ public class PageObject {
         new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
-  
-    protected void navigate(String URL){
+
+    protected void navigate(String URL) {
         driver.get(URL);
     }
 }

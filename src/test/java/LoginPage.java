@@ -3,8 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-
 public class LoginPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='login-form-username']")

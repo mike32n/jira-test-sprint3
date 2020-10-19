@@ -1,10 +1,9 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ComponentsPage extends PageObject{
+public class ComponentsPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='components-add__component']/div[1]/input")
     private WebElement componentNameField;
@@ -34,23 +33,23 @@ public class ComponentsPage extends PageObject{
         super(driver);
     }
 
-    public void setComponentNameField(String componentName){
+    public void setComponentNameField(String componentName) {
         waitForClickable(componentNameField);
         componentNameField.sendKeys(componentName);
     }
 
-    public void setDescriptionField(String descriptionName){
+    public void setDescriptionField(String descriptionName) {
         waitForClickable(descriptionField);
         descriptionField.sendKeys(descriptionName);
     }
 
-    public void setDefaultAssigneeField(String defaultAssignee){
+    public void setDefaultAssigneeField(String defaultAssignee) {
         waitForClickable(defaultAssigneeField);
         defaultAssigneeField.sendKeys(defaultAssignee);
         defaultAssigneeField.sendKeys(Keys.TAB);
     }
 
-    public void clickAddButton(){
+    public void clickAddButton() {
         waitForClickable(addButton);
         clickOn(addButton);
     }
@@ -61,10 +60,6 @@ public class ComponentsPage extends PageObject{
         dots.click();
         deleteButton.click();
         waitForClickable(submitButton);
-        submitButton.click();/*
-        driver.findElement(By.xpath("//input[@id='component-filter-text']")).sendKeys("glass test");
-        driver.findElement(By.cssSelector(".item-state-ready:nth-child(1) .aui-button")).click();
-        driver.findElement(By.linkText("Delete")).click();
-        driver.findElement(By.xpath("//input[@id='submit']")).click();*/
+        submitButton.click();
     }
 }
