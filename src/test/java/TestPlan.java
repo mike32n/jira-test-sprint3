@@ -25,8 +25,8 @@ public class TestPlan {
         // ChromeDriver location set up in Utils class
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setBrowserName("chrome");
-        //capabilities.setPlatform(Platform.XP);
-        //System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        capabilities.setPlatform(Platform.ANY);
+        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
         driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
 
