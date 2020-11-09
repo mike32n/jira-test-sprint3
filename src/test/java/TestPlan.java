@@ -51,20 +51,19 @@ public class TestPlan {
     private static ComponentsPage componentsPage = new ComponentsPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
-    @ParameterizedTest()
-    @DisplayName("Successful Login")
-    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
-    public void successfulLogin(String user, String pass) {
+
+
+    public void successfulLogin() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
-        loginPage.setUsername(user);
-        loginPage.setPassword(pass);
+        loginPage.setUsername("user5");
+        loginPage.setPassword("CoolCanvas19.");
         loginPage.clickLoginButton();
 
         mainPage.navigate(Utils.PROFILE_PAGE);
 
-        profilePage.verifyUsername(user);
+        profilePage.verifyUsername("user5");
 
         mainPage.logout();
     }
