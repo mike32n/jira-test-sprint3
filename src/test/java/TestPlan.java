@@ -16,25 +16,24 @@ import java.net.URL;
 
 public class TestPlan {
 
-    private static WebDriver driver = null;
+    private static final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 
-    private static final Capabilities capabilities = null;
+    private static WebDriver driver;
+
+    static {
+        try {
+            driver = new RemoteWebDriver(new URL("http://10.112.70.32:5551/wd/hub"), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @BeforeAll
     public static void setup() {
         // ChromeDriver location set up in Utils class
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setBrowserName("firefox");
-        capabilities.setPlatform(Platform.XP);
+//        capabilities.setPlatform(Platform.XP);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
-    }
-
-    static {
-        try {
-            driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
     }
 
     private static LoginPage loginPage = new LoginPage(driver);
