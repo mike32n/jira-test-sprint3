@@ -31,7 +31,7 @@ public class TestPlan {
 
     static {
         try {
-            driver = new RemoteWebDriver(new URL("http://192.168.1.4:5566/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
