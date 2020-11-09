@@ -17,17 +17,27 @@ import java.net.URL;
 
 public class TestPlan {
 
-    private static RemoteWebDriver driver = null;
+    private static RemoteWebDriver driver;
+
+    private static final Capabilities capabilities = null;
+
+    static {
+        try {
+            driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"),capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @BeforeAll
-    public static void setup() throws MalformedURLException{
+    public static void setup() {
         // ChromeDriver location set up in Utils class
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        //DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         //capabilities.setBrowserName("chrome");
-        capabilities.setPlatform(Platform.ANY);
-        //System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
-        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+        //capabilities.setPlatform(Platform.ANY);
+        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        //driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
 
 /*    static {
