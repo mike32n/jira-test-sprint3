@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,7 +33,7 @@ public class CreateIssuePage extends PageObject {
     @FindBy(xpath = "//*[@id='description']")
     private WebElement description;
 
-    public CreateIssuePage(WebDriver driver) {
+    public CreateIssuePage(RemoteWebDriver driver) {
         super(driver);
     }
 

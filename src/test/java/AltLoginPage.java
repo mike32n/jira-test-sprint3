@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class AltLoginPage extends PageObject {
@@ -11,7 +12,7 @@ public class AltLoginPage extends PageObject {
     @FindBy(xpath = "//*[@id='login-form-submit']")
     private WebElement loginButton;
 
-    public AltLoginPage(WebDriver driver) {
+    public AltLoginPage(RemoteWebDriver driver) {
         super(driver);
     }
 

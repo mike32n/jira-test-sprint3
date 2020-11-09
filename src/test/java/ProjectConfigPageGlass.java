@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ProjectConfigPageGlass extends PageObject {
@@ -45,7 +46,7 @@ public class ProjectConfigPageGlass extends PageObject {
     @FindBy(linkText = "Sub-task")
     private WebElement subTask;
 
-    public ProjectConfigPageGlass(WebDriver driver) {
+    public ProjectConfigPageGlass(RemoteWebDriver driver) {
         super(driver);
     }
 

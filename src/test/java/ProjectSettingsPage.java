@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ProjectSettingsPage extends PageObject {
@@ -23,7 +24,7 @@ public class ProjectSettingsPage extends PageObject {
     @FindBy(xpath = "//*[@id='project-config-webpanel-summary-issuetypes']/div[2]/div/p/a")
     private WebElement issueTypeScheme;
 
-    public ProjectSettingsPage(WebDriver driver) {
+    public ProjectSettingsPage(RemoteWebDriver driver) {
         super(driver);
     }
 

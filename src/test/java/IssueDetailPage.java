@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
@@ -34,7 +35,7 @@ public class IssueDetailPage extends PageObject {
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/span")
     private WebElement popUpClose;
 
-    public IssueDetailPage(WebDriver driver) {
+    public IssueDetailPage(RemoteWebDriver driver) {
         super(driver);
     }
 

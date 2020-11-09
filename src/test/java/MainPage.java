@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends PageObject {
@@ -17,7 +18,7 @@ public class MainPage extends PageObject {
     @FindBy(xpath = "//*[@id='content']//strong")
     private WebElement logoutMessage;
 
-    public MainPage(WebDriver driver) {
+    public MainPage(RemoteWebDriver driver) {
         super(driver);
     }
 

@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class EditIssuePage extends PageObject {
@@ -11,7 +12,7 @@ public class EditIssuePage extends PageObject {
     @FindBy(xpath = "//*[@id='summary']")
     private WebElement summaryField;
 
-    public EditIssuePage(WebDriver driver) {
+    public EditIssuePage(RemoteWebDriver driver) {
         super(driver);
     }
 

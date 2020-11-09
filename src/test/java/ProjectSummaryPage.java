@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ProjectSummaryPage extends PageObject {
@@ -11,7 +12,7 @@ public class ProjectSummaryPage extends PageObject {
     @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
     private WebElement userIcon;
 
-    public ProjectSummaryPage(WebDriver driver) {
+    public ProjectSummaryPage(RemoteWebDriver driver) {
         super(driver);
     }
 

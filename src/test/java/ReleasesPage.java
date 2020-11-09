@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ReleasesPage extends PageObject {
@@ -24,7 +25,7 @@ public class ReleasesPage extends PageObject {
     @FindBy(xpath = "//form[@id='releases-add__version']/div[4]/input")
     private WebElement description;
 
-    public ReleasesPage(WebDriver driver) {
+    public ReleasesPage(RemoteWebDriver driver) {
         super(driver);
     }
 

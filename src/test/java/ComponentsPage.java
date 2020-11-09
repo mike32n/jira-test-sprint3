@@ -1,6 +1,7 @@
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ComponentsPage extends PageObject {
@@ -29,7 +30,7 @@ public class ComponentsPage extends PageObject {
     @FindBy(xpath = "//input[@id='submit']")
     private WebElement submitButton;
 
-    public ComponentsPage(WebDriver driver) {
+    public ComponentsPage(RemoteWebDriver driver) {
         super(driver);
     }
 
