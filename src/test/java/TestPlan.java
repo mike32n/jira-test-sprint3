@@ -379,5 +379,6 @@ public class TestPlan {
     public static void cleanUp() {
         driver.manage().deleteAllCookies();
         driver.close();
+        driver.quit();
     }
 }
