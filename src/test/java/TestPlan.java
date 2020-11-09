@@ -4,16 +4,37 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class TestPlan {
-    private static final WebDriver driver = new ChromeDriver();
+
+    private static WebDriver driver = null;
+
+    private static final Capabilities capabilities = null;
 
     @BeforeAll
     public static void setup() {
         // ChromeDriver location set up in Utils class
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        capabilities.setBrowserName("firefox");
+        capabilities.setPlatform(Platform.XP);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+    }
+
+    static {
+        try {
+            driver = new RemoteWebDriver(new URL("https://selenium:selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     private static LoginPage loginPage = new LoginPage(driver);
