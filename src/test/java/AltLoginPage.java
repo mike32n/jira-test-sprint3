@@ -12,7 +12,7 @@ public class AltLoginPage extends PageObject {
     @FindBy(xpath = "//*[@id='login-form-submit']")
     private WebElement loginButton;
 
-    public AltLoginPage(RemoteWebDriver driver) {
+    public AltLoginPage(WebDriver driver) {
         super(driver);
     }
 

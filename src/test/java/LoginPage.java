@@ -16,7 +16,7 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//*[@id='usernameerror']/p")
     private WebElement errorText;
 
-    public LoginPage(RemoteWebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 

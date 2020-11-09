@@ -6,9 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageObject {
-    protected RemoteWebDriver driver;
+    protected WebDriver driver;
 
-    public PageObject(RemoteWebDriver driver) {
+    public PageObject(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
