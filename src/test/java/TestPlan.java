@@ -31,7 +31,7 @@ public class TestPlan {
 
     static {
         try {
-            driver = new RemoteWebDriver(new URL("https://selenium:selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
