@@ -24,7 +24,7 @@ public class TestPlan {
     public static void setup() throws MalformedURLException{
         // ChromeDriver location set up in Utils class
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setBrowserName("firefox");
+        capabilities.setBrowserName("chrome");
         //capabilities.setPlatform(Platform.XP);
         //System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
         driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
