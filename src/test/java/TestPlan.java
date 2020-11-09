@@ -21,21 +21,22 @@ public class TestPlan {
     private static final Capabilities capabilities = null;
 
     @BeforeAll
-    public static void setup() {
+    public static void setup() throws MalformedURLException{
         // ChromeDriver location set up in Utils class
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setBrowserName("firefox");
-        capabilities.setPlatform(Platform.XP);
-        System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        //capabilities.setPlatform(Platform.XP);
+        //System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
 
-    static {
+/*    static {
         try {
             driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     private static LoginPage loginPage = new LoginPage(driver);
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
