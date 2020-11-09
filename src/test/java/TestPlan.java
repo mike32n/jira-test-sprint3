@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class TestPlan {
 
-    private static WebDriver driver = null;
+    private static RemoteWebDriver driver;
 
     private static final Capabilities capabilities = null;
 
@@ -90,7 +90,7 @@ public class TestPlan {
     @Test
     @DisplayName("Login Without Password")
     public void loginWithoutPassword() {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -123,7 +123,7 @@ public class TestPlan {
     @Test
     @DisplayName("Successful Logout")
     public void successfulLogout() {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -138,7 +138,7 @@ public class TestPlan {
     @Test
     @DisplayName("EMPTY Project Without Summary")
     public void emptyProjectWithoutSummary() {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -184,7 +184,7 @@ public class TestPlan {
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void issueTypesForProjectsTest(String projectName, String issueType,
                                           String assertProjectName, String assertIssueType) {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -209,7 +209,7 @@ public class TestPlan {
     @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
     public void browseProjectsTest(String URL, String projectKey) {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -224,7 +224,7 @@ public class TestPlan {
     @DisplayName("Browse Issues")
     @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
     public void browseIssuesTest(String URL, String issueKey) {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -302,7 +302,7 @@ public class TestPlan {
     @DisplayName("Edit Issues")
     @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
     public void editIssuesTest(String URL) {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -329,7 +329,7 @@ public class TestPlan {
     @Test
     @DisplayName("Glass Components")
     public void glassComponentsTest() {
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
@@ -352,7 +352,7 @@ public class TestPlan {
     @DisplayName("Glass Issue Type Scheme")
     public void glassIssueTypeSchemeTest() {
 
-        //loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
