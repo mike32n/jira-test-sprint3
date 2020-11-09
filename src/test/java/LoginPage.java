@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends PageObject {
@@ -15,7 +16,7 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//*[@id='usernameerror']/p")
     private WebElement errorText;
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(RemoteWebDriver driver) {
         super(driver);
     }
 
