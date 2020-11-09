@@ -52,7 +52,7 @@ public class TestPlan {
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
 
-
+    @Test
     public void successfulLogin() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
