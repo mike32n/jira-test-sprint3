@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends PageObject {
 
-    @FindBy(id = "create_link")
+    @FindBy(xpath = "//*[@id='create_link']")
     private WebElement createButton;
 
     @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")

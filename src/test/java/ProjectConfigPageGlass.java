@@ -15,7 +15,7 @@ public class ProjectConfigPageGlass extends PageObject {
     @FindBy(linkText = "Test PP1")
     private WebElement versionName;
 
-    @FindBy(xpath = "//*[@id='content']/div[1]/div/div[1]/nav/div/div[2]/ul/li[6]/a/span[1]")
+    @FindBy(xpath = "//*[@id='content']//li[6]//span[1]")
     private WebElement sideBarComponentIcon;
 
     @FindBy(xpath = "//*[@id='content']/div[1]/div/div[2]/a[1]")

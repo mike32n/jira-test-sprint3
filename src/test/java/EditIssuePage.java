@@ -11,6 +11,9 @@ public class EditIssuePage extends PageObject {
     @FindBy(xpath = "//*[@id='summary']")
     private WebElement summaryField;
 
+    @FindBy(xpath = "//*[@id='stalker']/div/header/div/div[3]")
+    private WebElement updateModal;
+
     public EditIssuePage(WebDriver driver) {
         super(driver);
     }
@@ -24,5 +27,9 @@ public class EditIssuePage extends PageObject {
 
     public void clickOnUpdate() {
         clickOn(updateButton);
+    }
+
+    public void waitForModal() {
+        waitForVisibility(updateModal);
     }
 }
