@@ -83,216 +83,216 @@ public class TestPlan {
 //        mainPage.logout();
 //    }
 
-//    @Test
-//    @DisplayName("Login Without Password")
-//    public void loginWithoutPassword() {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.clickLoginButton();
-//
-//        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//        mainPage.logout();
-//    }
-//
-//    @Test
-//    @DisplayName("Login Without Credentials")
-//    public void loginWithoutCredentials() {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.clickLoginButton();
-//
-//        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//        mainPage.logout();
-//    }
-//
-//    @Test
-//    @DisplayName("Successful Logout")
-//    public void successfulLogout() {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.logout();
-//
-//        mainPage.verifySuccessfulLogout();
-//    }
-//
-//    @Test
-//    @DisplayName("EMPTY Project Without Summary")
-//    public void emptyProjectWithoutSummary() {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.clickCreateButton();
-//
-//        createIssuePage.setProjectField("EMPTY");
-//        createIssuePage.clickOnCreate();
-//        createIssuePage.verifyErrorMessage();
-//
-//        createIssuePage.clickOnCancel();
-//        mainPage.logout();
-//    }
-//
-//    @Test
-//    @DisplayName("Create Issue With Required Fields Are Filled")
-//    public void createIssueWithRequiredFieldsFilled() {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.clickCreateButton();
-//
-//        createIssuePage.setProjectField("MTP");
-//        createIssuePage.setIssueField("Task");
-//        createIssuePage.setSummaryField("Testing \"Create Issue\" with all required fields are filled");
-//        createIssuePage.clickOnCreate();
-//        createIssuePage.clickLinkOnPopUpScreen();
-//
-//        issueDetailPage.verifySummary("Testing \"Create Issue\" with all required fields are filled");
-//        issueDetailPage.deleteIssue();
-//
-//        mainPage.logout();
-//    }
-//
-//    @ParameterizedTest()
-//    @DisplayName("Issue Types For Projects")
-//    @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
-//    public void issueTypesForProjectsTest(String projectName, String issueType,
-//                                          String assertProjectName, String assertIssueType) {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.clickCreateButton();
-//
-//        createIssuePage.setProjectField(projectName);
-//        createIssuePage.setIssueField(issueType);
-//
-//        createIssuePage.verifyProjectField(assertProjectName);
-//        createIssuePage.verifyIssueType(assertIssueType);
-//
-//        createIssuePage.clickOnCancel();
-//        mainPage.logout();
-//
-//
-//    }
-//
-//    @ParameterizedTest
-//    @DisplayName("Browse Projects")
-//    @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
-//    public void browseProjectsTest(String URL, String projectKey) {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//        projectSummaryPage.navigate(URL);
-//        projectSummaryPage.verifyKey(projectKey);
-//        mainPage.logout();
-//    }
-//
-//    @ParameterizedTest
-//    @DisplayName("Browse Issues")
-//    @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
-//    public void browseIssuesTest(String URL, String issueKey) {
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        issueDetailPage.navigate(URL);
-//        issueDetailPage.verifyIssueKey(issueKey);
-//
-//        mainPage.logout();
-//    }
-//
-//    @Test
-//    @DisplayName("New Project Version In Glass (Empty Optional Fields)")
-//    public void newProjectVersionInGlassEmptyOptionalFields() {
-//
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnsideBarShipIcon();
-//        releasesPage.setVersionName("Test PP1");
-//        releasesPage.clickOnAdd();
-//        releasesPage.clickOnNewVersionName();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnVersions();
-//        projectConfigPageGlass.verifyNewVersionName("Test PP1");
-//        projectConfigPageGlass.clickOnsideBarShipIcon();
-//
-//        releasesPage.deleteNewTestVersion();
-//
-//        mainPage.logout();
-//    }
-//
-//    @Test
-//    @DisplayName("New Project Version In Glass")
-//    public void newProjectVersionInGlass() {
-//
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnsideBarShipIcon();
-//        releasesPage.setVersionName("Test PP1");
-//        releasesPage.setStartDate("1/oct/20");
-//        releasesPage.setReleaseDate("31/oct/20");
-//        releasesPage.setDescription("Test Description");
-//        releasesPage.clickOnAdd();
-//        releasesPage.clickOnNewVersionName();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnVersions();
-//        projectConfigPageGlass.verifyNewVersionName("Test PP1");
-//        projectConfigPageGlass.clickOnsideBarShipIcon();
-//
-//        releasesPage.deleteNewTestVersion();
-//
-//        mainPage.logout();
-//    }
+    @Test
+    @DisplayName("Login Without Password")
+    public void loginWithoutPassword() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Login Without Credentials")
+    public void loginWithoutCredentials() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.clickLoginButton();
+
+        loginPage.verifyErrorMessage("Sorry, your username and password are incorrect - please try again.");
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Successful Logout")
+    public void successfulLogout() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.logout();
+
+        mainPage.verifySuccessfulLogout();
+    }
+
+    @Test
+    @DisplayName("EMPTY Project Without Summary")
+    public void emptyProjectWithoutSummary() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField("EMPTY");
+        createIssuePage.clickOnCreate();
+        createIssuePage.verifyErrorMessage();
+
+        createIssuePage.clickOnCancel();
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Create Issue With Required Fields Are Filled")
+    public void createIssueWithRequiredFieldsFilled() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField("MTP");
+        createIssuePage.setIssueField("Task");
+        createIssuePage.setSummaryField("Testing \"Create Issue\" with all required fields are filled");
+        createIssuePage.clickOnCreate();
+        createIssuePage.clickLinkOnPopUpScreen();
+
+        issueDetailPage.verifySummary("Testing \"Create Issue\" with all required fields are filled");
+        issueDetailPage.deleteIssue();
+
+        mainPage.logout();
+    }
+
+    @ParameterizedTest()
+    @DisplayName("Issue Types For Projects")
+    @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
+    public void issueTypesForProjectsTest(String projectName, String issueType,
+                                          String assertProjectName, String assertIssueType) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.clickCreateButton();
+
+        createIssuePage.setProjectField(projectName);
+        createIssuePage.setIssueField(issueType);
+
+        createIssuePage.verifyProjectField(assertProjectName);
+        createIssuePage.verifyIssueType(assertIssueType);
+
+        createIssuePage.clickOnCancel();
+        mainPage.logout();
+
+
+    }
+
+    @ParameterizedTest
+    @DisplayName("Browse Projects")
+    @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
+    public void browseProjectsTest(String URL, String projectKey) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+        projectSummaryPage.navigate(URL);
+        projectSummaryPage.verifyKey(projectKey);
+        mainPage.logout();
+    }
+
+    @ParameterizedTest
+    @DisplayName("Browse Issues")
+    @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
+    public void browseIssuesTest(String URL, String issueKey) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        issueDetailPage.navigate(URL);
+        issueDetailPage.verifyIssueKey(issueKey);
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("New Project Version In Glass (Empty Optional Fields)")
+    public void newProjectVersionInGlassEmptyOptionalFields() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+
+        releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("New Project Version In Glass")
+    public void newProjectVersionInGlass() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+        releasesPage.setVersionName("Test PP1");
+        releasesPage.setStartDate("1/oct/20");
+        releasesPage.setReleaseDate("31/oct/20");
+        releasesPage.setDescription("Test Description");
+        releasesPage.clickOnAdd();
+        releasesPage.clickOnNewVersionName();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnVersions();
+        projectConfigPageGlass.verifyNewVersionName("Test PP1");
+        projectConfigPageGlass.clickOnsideBarShipIcon();
+
+        releasesPage.deleteNewTestVersion();
+
+        mainPage.logout();
+    }
 
     @ParameterizedTest
     @DisplayName("Edit Issues")
@@ -344,33 +344,33 @@ public class TestPlan {
         componentsPage.deleteComponent();
     }
 
-//    @Test
-//    @DisplayName("Glass Issue Type Scheme")
-//    public void glassIssueTypeSchemeTest() {
-//
-//        loginPage.maximizeWindow();
-//        loginPage.openLoginPage();
-//
-//        loginPage.setUsername();
-//        loginPage.setPassword();
-//        loginPage.clickLoginButton();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnProjectSettingButton();
-//
-//        projectSettingsPage.verifyIssueTypes();
-//
-//        mainPage.navigate(Utils.GLASS_URL);
-//
-//        projectConfigPageGlass.clickOnSchemeTab();
-//        projectConfigPageGlass.verifyScheme();
-//
-//        projectConfigPageGlass.clickOnIssueTypeDropdown();
-//        projectConfigPageGlass.verifyIssueTypes();
-//
-//        mainPage.logout();
-//    }
+    @Test
+    @DisplayName("Glass Issue Type Scheme")
+    public void glassIssueTypeSchemeTest() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnProjectSettingButton();
+
+        projectSettingsPage.verifyIssueTypes();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnSchemeTab();
+        projectConfigPageGlass.verifyScheme();
+
+        projectConfigPageGlass.clickOnIssueTypeDropdown();
+        projectConfigPageGlass.verifyIssueTypes();
+
+        mainPage.logout();
+    }
 
     @AfterAll
     public static void cleanUp() {
