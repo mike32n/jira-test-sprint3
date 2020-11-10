@@ -24,10 +24,10 @@ public class ReadLoginProperties {
     }
 
     public static String getUsername() {
-        return System.getenv("name");
+        return "user5"; //System.getenv("name");
     }
 
     public static String getPassword() {
-        return System.getenv("pass");
+        return "CoolCanvas19."; //System.getenv("pass");
     }
 }
