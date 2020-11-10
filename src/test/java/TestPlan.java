@@ -25,7 +25,7 @@ public class TestPlan {
         capabilities.setBrowserName("chrome");
         capabilities.setPlatform(Platform.ANY);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
-        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+        TestPlan.driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
     private static LoginPage loginPage = new LoginPage(driver);
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
