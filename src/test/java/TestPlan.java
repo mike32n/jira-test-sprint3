@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -14,7 +16,7 @@ import java.net.URL;
 
 public class TestPlan {
 
-    private static WebDriver driver;
+    private static RemoteWebDriver driver;
 
     @BeforeAll
     public static void setup() throws MalformedURLException {
@@ -228,7 +230,7 @@ public class TestPlan {
     @DisplayName("New Project Version In Glass (Empty Optional Fields)")
     public void newProjectVersionInGlassEmptyOptionalFields() {
 
-//        loginPage.maximizeWindow();
+        loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
         loginPage.setUsername();
