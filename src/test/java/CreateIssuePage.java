@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateIssuePage extends PageObject {
 
-    @FindBy(xpath = "//*[@id='project-field']")
+    @FindBy(xpath = "//*[@id=\"project-field\"]")
     private WebElement projectField;
 
-    @FindBy(xpath = "//*[@id='issuetype-field']")
+    @FindBy(xpath = "//*[@id=\"issuetype-field\"]")
     private WebElement issueField;
 
     @FindBy(xpath = "//*[@id='summary']")
