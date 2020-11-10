@@ -29,8 +29,8 @@ public class TestPlan {
     public static void setup() {
         // ChromeDriver location set up in Utils class
 //        ChromeOptions capabilities = new ChromeOptions();
-        capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
-                UnexpectedAlertBehaviour.IGNORE);
+//        capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
+//                UnexpectedAlertBehaviour.IGNORE);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
 //        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
