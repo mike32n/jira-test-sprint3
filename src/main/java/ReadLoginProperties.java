@@ -24,10 +24,10 @@ public class ReadLoginProperties {
     }
 
     public static String getUsername() throws IOException {
-        return "user6";
+        return System.getenv("JOB_USER");
     }
 
     public static String getPassword() throws IOException {
-        return System.getenv("user6");
+        return System.getenv("JOB_PASS");
     }
 }
