@@ -4,11 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -16,16 +14,25 @@ import java.net.URL;
 
 public class TestPlan {
 
+    private static final ChromeOptions capabilities = new ChromeOptions();
     private static RemoteWebDriver driver;
 
+    static {
+        try {
+            driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @BeforeAll
-    public static void setup() throws MalformedURLException {
+    public static void setup() {
         // ChromeDriver location set up in Utils class
-        ChromeOptions capabilities = new ChromeOptions();
+//        ChromeOptions capabilities = new ChromeOptions();
         capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
                 UnexpectedAlertBehaviour.IGNORE);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
-        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+//        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
     private static LoginPage loginPage = new LoginPage(driver);
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
