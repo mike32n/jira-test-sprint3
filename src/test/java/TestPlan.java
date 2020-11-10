@@ -47,41 +47,41 @@ public class TestPlan {
     private static ComponentsPage componentsPage = new ComponentsPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
-    @ParameterizedTest()
-    @DisplayName("Successful Login")
-    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
-    public void successfulLogin(String user, String pass) {
-        loginPage.maximizeWindow();
-        loginPage.openLoginPage();
+//    @ParameterizedTest()
+//    @DisplayName("Successful Login")
+//    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
+//    public void successfulLogin(String user, String pass) {
+//        loginPage.maximizeWindow();
+//        loginPage.openLoginPage();
+//
+//        loginPage.setUsername(user);
+//        loginPage.setPassword(pass);
+//        loginPage.clickLoginButton();
+//
+//        mainPage.navigate(Utils.PROFILE_PAGE);
+//
+//        profilePage.verifyUsername(user);
+//
+//        mainPage.logout();
+//    }
 
-        loginPage.setUsername(user);
-        loginPage.setPassword(pass);
-        loginPage.clickLoginButton();
-
-        mainPage.navigate(Utils.PROFILE_PAGE);
-
-        profilePage.verifyUsername(user);
-
-        mainPage.logout();
-    }
-
-    @ParameterizedTest()
-    @DisplayName("Alternative Login")
-    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
-    public void alternativeLogin(String user, String pass) {
-        loginPage.maximizeWindow();
-        loginPage.openAlternativeLoginPage();
-
-        altLoginPage.setUsername(user);
-        altLoginPage.setPassword(pass);
-        altLoginPage.clickLoginButton();
-
-        mainPage.navigate(Utils.PROFILE_PAGE);
-
-        profilePage.verifyUsername(user);
-
-        mainPage.logout();
-    }
+//    @ParameterizedTest()
+//    @DisplayName("Alternative Login")
+//    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
+//    public void alternativeLogin(String user, String pass) {
+//        loginPage.maximizeWindow();
+//        loginPage.openAlternativeLoginPage();
+//
+//        altLoginPage.setUsername(user);
+//        altLoginPage.setPassword(pass);
+//        altLoginPage.clickLoginButton();
+//
+//        mainPage.navigate(Utils.PROFILE_PAGE);
+//
+//        profilePage.verifyUsername(user);
+//
+//        mainPage.logout();
+//    }
 
     @Test
     @DisplayName("Login Without Password")
