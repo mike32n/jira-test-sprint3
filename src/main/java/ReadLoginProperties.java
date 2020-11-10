@@ -24,10 +24,10 @@ public class ReadLoginProperties {
     }
 
     public static String getUsername() throws IOException {
-        return readLoginPropertiesFile("src/main/resources/login.properties").getProperty("username");
+        return System.getenv("Name");
     }
 
     public static String getPassword() throws IOException {
-        return readLoginPropertiesFile("src/main/resources/login.properties").getProperty("password");
+        return System.getenv("Password");
     }
 }
