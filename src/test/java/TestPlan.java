@@ -317,7 +317,6 @@ public class TestPlan {
         issueDetailPage.clickOnEdit();
         editIssuePage.setSummaryField("Test issue");
         editIssuePage.clickOnUpdate();
-        editIssuePage.waitForModal();
 
         issueDetailPage.verifyEditedSummary("Test issue");
 
