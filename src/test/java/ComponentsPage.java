@@ -39,6 +39,7 @@ public class ComponentsPage extends PageObject {
 
     public void setComponentNameField(String componentName) {
         waitForClickable(componentNameField);
+        componentNameField.sendKeys(Keys.DELETE);
         componentNameField.sendKeys(componentName);
     }
 
