@@ -172,9 +172,9 @@ public class TestPlan {
         mainPage.clickCreateButton();
 
         createIssuePage.setProjectField(projectName);
-        createIssuePage.setIssueField(issueType);
-
         createIssuePage.verifyProjectField(assertProjectName);
+
+        createIssuePage.setIssueField(issueType);
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
@@ -317,6 +317,10 @@ public class TestPlan {
         mainPage.navigate(Utils.GLASS_URL);
         projectConfigPageGlass.clickOnSideBarComponentIcon();
         componentsPage.setComponentNameField("glass test");
+        if (componentsPage.isError()) {
+            componentsPage.deleteComponent();
+            componentsPage.setComponentNameField("glass test");
+        }
         componentsPage.setDescriptionField("this is a test");
         componentsPage.setDefaultAssigneeField("Project default (Project lead)");
         componentsPage.clickAddButton();

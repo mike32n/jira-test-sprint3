@@ -32,5 +32,10 @@ public class PageObject {
     protected void navigate(String URL) {
         driver.get(URL);
     }
+
+    public void acceptAlert() {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+    }
 }
 

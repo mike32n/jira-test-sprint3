@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +68,8 @@ public class CreateIssuePage extends PageObject {
     }
 
     public void clickOnSummaryField() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0)");
         clickOn(summaryField);
     }
 
@@ -86,11 +89,6 @@ public class CreateIssuePage extends PageObject {
             acceptAlert();
         } catch (Exception ignore) {
         }
-    }
-
-    public void acceptAlert() {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
-        driver.switchTo().alert().accept();
     }
 
     public void setSummaryField(String summaryText) {

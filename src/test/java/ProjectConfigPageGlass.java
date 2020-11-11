@@ -67,7 +67,7 @@ public class ProjectConfigPageGlass extends PageObject {
     }
 
     public void verifyNewGlassComponent() {
-        Assert.assertEquals(driver.findElement(By.xpath("//td[contains(.,'glass test')]")).getText(), "glass test");
+        Assert.assertEquals("glass test", driver.findElement(By.xpath("//td[contains(.,'glass test')]")).getText());
     }
 
     public void clickOnProjectSettingButton() {

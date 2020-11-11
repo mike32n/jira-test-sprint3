@@ -29,11 +29,19 @@ public class LoginPage extends PageObject {
     }
 
     public void setUsername() {
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {
+        }
         waitForClickable(fieldUsername);
         fieldUsername.sendKeys(Utils.username);
     }
 
     public void setUsername(String user) {
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {
+        }
         waitForClickable(fieldUsername);
         fieldUsername.sendKeys(user);
     }
