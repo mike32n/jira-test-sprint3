@@ -27,15 +27,12 @@ public class TestPlan {
     }
 
     @BeforeAll
-    public static void setup() throws AWTException {
+    public static void setup() {
         // ChromeDriver location set up in Utils class
         ChromeOptions capabilities = new ChromeOptions();
         capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
                 UnexpectedAlertBehaviour.ACCEPT_AND_NOTIFY);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
-        Robot robot = new Robot();
-        robot.mouseMove(0,0);
-//        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
     private static LoginPage loginPage = new LoginPage(driver);
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
@@ -182,9 +179,10 @@ public class TestPlan {
     @DisplayName("Issue Types For Projects")
     @CsvFileSource(resources = "/CreateIssueData.csv", numLinesToSkip = 1)
     public void issueTypesForProjectsTest(String projectName, String issueType,
-                                          String assertProjectName, String assertIssueType) {
+                                          String assertProjectName, String assertIssueType) throws AWTException {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
+        loginPage.moveMouseToCorner();
 
         loginPage.setUsername();
         loginPage.setPassword();
@@ -193,9 +191,9 @@ public class TestPlan {
         mainPage.clickCreateButton();
 
         createIssuePage.setProjectField(projectName);
-        createIssuePage.setIssueField(issueType);
-
         createIssuePage.verifyProjectField(assertProjectName);
+
+        createIssuePage.setIssueField(issueType);
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();

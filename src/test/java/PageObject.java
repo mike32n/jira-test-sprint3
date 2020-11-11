@@ -4,6 +4,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+
 public class PageObject {
     protected WebDriver driver;
 
@@ -36,6 +38,11 @@ public class PageObject {
 
     protected void navigate(String URL) {
         driver.get(URL);
+    }
+
+    public void moveMouseToCorner() throws AWTException {
+        Robot robot = new Robot();
+        robot.mouseMove(0,0);
     }
 }
 
