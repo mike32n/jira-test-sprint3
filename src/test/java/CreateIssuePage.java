@@ -54,16 +54,18 @@ public class CreateIssuePage extends PageObject {
         issueField.sendKeys(issueType);
         waitForClickable(issueField);
         issueField.sendKeys(Keys.ENTER);
-        clickOnSummaryField();
+//        clickOnSummaryField();
         waitForClickable(issueField);
     }
 
     public void verifyProjectField(String projectName) {
+        waitForVisibility(projectField);
         String projectNameValue = projectField.getAttribute("value");
         Assert.assertEquals(projectName, projectNameValue);
     }
 
     public void verifyIssueType(String issueType) {
+        waitForVisibility(issueField);
         String issueTypeValue = issueField.getAttribute("value");
         Assert.assertEquals(issueType, issueTypeValue);
     }
