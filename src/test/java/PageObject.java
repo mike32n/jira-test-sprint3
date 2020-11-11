@@ -44,5 +44,10 @@ public class PageObject {
         Robot robot = new Robot();
         robot.mouseMove(0,0);
     }
+
+    public void acceptAlert() {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+    }
 }
 

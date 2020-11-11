@@ -2,6 +2,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ComponentsPage extends PageObject {
 
@@ -29,12 +30,16 @@ public class ComponentsPage extends PageObject {
     @FindBy(xpath = "//input[@id='submit']")
     private WebElement submitButton;
 
+    @FindBy(xpath = "//*[@id='components-add__component']/div[1]/div")
+    private WebElement errorMessage;
+
     public ComponentsPage(WebDriver driver) {
         super(driver);
     }
 
     public void setComponentNameField(String componentName) {
         waitForClickable(componentNameField);
+        componentNameField.sendKeys(Keys.DELETE);
         componentNameField.sendKeys(componentName);
     }
 
@@ -61,5 +66,9 @@ public class ComponentsPage extends PageObject {
         deleteButton.click();
         waitForClickable(submitButton);
         submitButton.click();
+    }
+
+    public boolean isError() {
+        return errorMessage.isDisplayed();
     }
 }
