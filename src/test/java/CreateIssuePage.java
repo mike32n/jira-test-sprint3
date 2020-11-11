@@ -54,7 +54,7 @@ public class CreateIssuePage extends PageObject {
         issueField.sendKeys(issueType);
         waitForClickable(issueField);
         issueField.sendKeys(Keys.ENTER);
-//        clickOnSummaryField();
+        clickOnSummaryField();
         waitForClickable(issueField);
     }
 
