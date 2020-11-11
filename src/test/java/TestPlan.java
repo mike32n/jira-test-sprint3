@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -26,12 +27,14 @@ public class TestPlan {
     }
 
     @BeforeAll
-    public static void setup() {
+    public static void setup() throws AWTException {
         // ChromeDriver location set up in Utils class
 //        ChromeOptions capabilities = new ChromeOptions();
 //        capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
 //                UnexpectedAlertBehaviour.IGNORE);
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
+        Robot robot = new Robot();
+        robot.mouseMove(0,0);
 //        driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
     }
     private static LoginPage loginPage = new LoginPage(driver);
