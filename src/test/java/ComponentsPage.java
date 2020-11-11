@@ -62,7 +62,7 @@ public class ComponentsPage extends PageObject {
 
     public void deleteComponent() {
         componentFilter.sendKeys("glass test");
-        clickOn(dots);
+        moveAndClick(dots);
         clickOn(deleteButton);
         clickOn(submitButton);
     }
