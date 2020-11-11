@@ -44,7 +44,6 @@ public class CreateIssuePage extends PageObject {
         waitForClickable(projectField);
         projectField.sendKeys(Keys.ENTER);
         clickOnSummaryField();
-        waitForClickable(projectField);
     }
 
     public void setIssueField(String issueType) {
@@ -55,7 +54,6 @@ public class CreateIssuePage extends PageObject {
         waitForClickable(issueField);
         issueField.sendKeys(Keys.ENTER);
         clickOnSummaryField();
-        waitForClickable(issueField);
     }
 
     public void verifyProjectField(String projectName) {
