@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.*;
+
 public class LoginPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='login-form-username']")
@@ -19,9 +21,10 @@ public class LoginPage extends PageObject {
         super(driver);
     }
 
-    public void maximizeWindow() {
+    public void maximizeWindow() throws AWTException {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
+        new Robot().mouseMove(0,0);
     }
 
     public void openLoginPage() {
