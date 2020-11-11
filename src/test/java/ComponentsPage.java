@@ -61,11 +61,9 @@ public class ComponentsPage extends PageObject {
 
     public void deleteComponent() {
         componentFilter.sendKeys("glass test");
-        waitForClickable(dots);
-        dots.click();
-        deleteButton.click();
-        waitForClickable(submitButton);
-        submitButton.click();
+        clickOn(dots);
+        clickOn(deleteButton);
+        clickOn(submitButton);
     }
 
     public boolean isError() {

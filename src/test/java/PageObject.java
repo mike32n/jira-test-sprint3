@@ -27,12 +27,12 @@ public class PageObject {
     }
 
     protected void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, 2)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitForVisibility(WebElement webElement) throws Error {
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, 2)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
@@ -46,7 +46,7 @@ public class PageObject {
     }
 
     public void acceptAlert() {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
+        new WebDriverWait(driver, 1).until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
     }
 }
