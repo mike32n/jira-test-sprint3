@@ -21,8 +21,8 @@ public class ComponentsPage extends PageObject {
     @FindBy(xpath = "//input[@id='component-filter-text']")
     private WebElement componentFilter;
 
-    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr/td[6]/div/a/span")
-//    @FindBy(linkText = "Operations")
+//    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr/td[6]/div/a/span")
+    @FindBy(linkText = "Operations")
     private WebElement dots;
 
     @FindBy(linkText = "Delete")
