@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -53,7 +54,9 @@ public class TestPlan {
 
 
     @Test
-    public void successfulLogin() {
+    public void successfulLogin() throws AWTException {
+        Robot robot = new Robot();
+        robot.mouseMove(10,10);
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
