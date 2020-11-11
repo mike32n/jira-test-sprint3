@@ -25,7 +25,8 @@ public class ComponentsPage extends PageObject {
     @FindBy(linkText = "Operations")
     private WebElement dots;
 
-    @FindBy(linkText = "Delete")
+//    @FindBy(linkText = "Delete")
+    @FindBy(xpath = "//*[@id='deletecomponent_11621']")
     private WebElement deleteButton;
 
     @FindBy(xpath = "//input[@id='submit']")
