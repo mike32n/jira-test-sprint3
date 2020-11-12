@@ -56,7 +56,7 @@ public class TestPlan {
 
     @Test
     public void successfulLogin() {
-        System.out.println(System.getenv("chrome"));
+        System.out.println(System.getenv("browser"));
         System.out.println("AÉSKFNLKSDNGFLKSFDNGLKFNDLKNGLKDFNGNDFLKNGLKFDLJKGNFDGL");
         loginPage.maximizeWindow();
         loginPage.openLoginPage();

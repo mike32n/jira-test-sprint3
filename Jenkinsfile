@@ -20,7 +20,7 @@ pipeline {
                     }
                     steps {
                         echo 'Test phase with chrome: '
-                        sh "mvn -Dtest=TestPlan#successfulLogin test"
+                        sh "mvn -Dtest=TestPlan#successfulLogin -Dbrowser=${chrome} test"
                     }
                 }
                 stage('run with firefox') {
@@ -29,7 +29,7 @@ pipeline {
                     }
                     steps {
                         echo 'Test phase with firefox: '
-                        sh "mvn -Dtest=TestPlan#successfulLogin test"
+                        sh "mvn -Dtest=TestPlan#successfulLogin -Dbrowser=${firefox} test"
                     }
                 }
             }
