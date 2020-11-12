@@ -12,7 +12,7 @@ pipeline {
                 stage('Test Login') {
                     steps {
                         echo 'Testing in progress: '
-                        sh "mvn test"
+                        sh "mvn -Dtest=TestPlan#successfulLogin test"
                     }
                 }
             }
