@@ -56,6 +56,7 @@ public class TestPlan {
 
     @Test
     public void successfulLogin() {
+        System.out.println(System.getenv("chrome"));
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
