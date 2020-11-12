@@ -81,4 +81,8 @@ public class ComponentsPage extends PageObject {
     public void emptySearchField() {
         componentFilter.clear();
     }
+
+    public void emptyComponentField() {
+        componentNameField.clear();
+    }
 }
