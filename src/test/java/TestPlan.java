@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 public class TestPlan {
 
@@ -56,7 +57,10 @@ public class TestPlan {
 
     @Test
     public void successfulLogin() {
-        System.out.println(System.getenv("browser"));
+        Map<String, String> env = System.getenv();
+        for (String envName : env.keySet()) {
+            System.out.format("%s=%s%n", envName, env.get(envName));
+        }
         System.out.println("AÉSKFNLKSDNGFLKSFDNGLKFNDLKNGLKDFNGNDFLKNGLKFDLJKGNFDGL");
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
