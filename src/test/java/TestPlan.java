@@ -341,15 +341,24 @@ public class TestPlan {
             componentsPage.emptySearchField();
             componentsPage.emptyComponentField();
             componentsPage.setComponentNameField("glass test");
+            componentsPage.setDescriptionField("this is a test");
+            componentsPage.setDefaultAssigneeField("Project default (Project lead)");
+            componentsPage.clickAddButton();
+            mainPage.navigate(Utils.GLASS_URL);
+            projectConfigPageGlass.verifyNewGlassComponent();
+            projectConfigPageGlass.clickOnSideBarComponentIcon();
+            componentsPage.deleteComponent();
+            mainPage.logout();
+        } else {
+            componentsPage.setDescriptionField("this is a test");
+            componentsPage.setDefaultAssigneeField("Project default (Project lead)");
+            componentsPage.clickAddButton();
+            mainPage.navigate(Utils.GLASS_URL);
+            projectConfigPageGlass.verifyNewGlassComponent();
+            projectConfigPageGlass.clickOnSideBarComponentIcon();
+            componentsPage.deleteComponent();
+            mainPage.logout();
         }
-        componentsPage.setDescriptionField("this is a test");
-        componentsPage.setDefaultAssigneeField("Project default (Project lead)");
-        componentsPage.clickAddButton();
-        mainPage.navigate(Utils.GLASS_URL);
-        projectConfigPageGlass.verifyNewGlassComponent();
-        projectConfigPageGlass.clickOnSideBarComponentIcon();
-        componentsPage.deleteComponent();
-        mainPage.logout();
     }
 
     @Test
