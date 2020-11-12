@@ -23,11 +23,11 @@ public class ReadLoginProperties {
         return prop;
     }
 
-    public static String getUsername() throws IOException {
-        return System.getenv("JOB_USER");
+    public static String getUsername() {
+        return "user6";
     }
 
-    public static String getPassword() throws IOException {
-        return System.getenv("JOB_PASS");
+    public static String getPassword() {
+        return "CoolCanvas19.";
     }
 }
