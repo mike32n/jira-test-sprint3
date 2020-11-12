@@ -338,7 +338,7 @@ public class TestPlan {
         componentsPage.setComponentNameField("glass test");
         if (componentsPage.isError()) {
             componentsPage.deleteComponent();
-            projectConfigPageGlass.clickOnSideBarComponentIcon();
+            componentsPage.emptySearchField();
             componentsPage.setComponentNameField("glass test");
             componentsPage.setDescriptionField("this is a test");
             componentsPage.setDefaultAssigneeField("Project default (Project lead)");
