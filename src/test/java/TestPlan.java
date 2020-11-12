@@ -349,6 +349,7 @@ public class TestPlan {
         projectConfigPageGlass.verifyNewGlassComponent();
         projectConfigPageGlass.clickOnSideBarComponentIcon();
         componentsPage.deleteComponent();
+        mainPage.logout();
     }
 
     @Test
