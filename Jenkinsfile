@@ -20,7 +20,7 @@ pipeline {
                     }
                     steps {
                         echo 'Test phase with chrome: '
-                        sh "mvn -Dtest=TestPlan#issueTypesForProjectsTest test"
+                        sh "mvn test"
                     }
                     post {
                         always {
@@ -34,7 +34,7 @@ pipeline {
                     }
                     steps {
                         echo 'Test phase with firefox: '
-                        sh "mvn -Dtest=TestPlan#issueTypesForProjectsTest test"
+                        sh "mvn test"
                     }
                     post {
                         always {
