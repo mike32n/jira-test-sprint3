@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -54,9 +55,7 @@ public class TestPlan {
 
 
     @Test
-    public void successfulLogin() throws AWTException {
-        Robot robot = new Robot();
-        robot.mouseMove(10,10);
+    public void successfulLogin() {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
