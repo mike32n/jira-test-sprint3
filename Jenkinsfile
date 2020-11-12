@@ -1,5 +1,10 @@
 pipeline {
     agent any
+     parameters {
+            string(name: 'browserToRun', defaultValue: 'both', description: 'Browsers to run: both, chrome, firefox')
+            string(name: 'chrome', defaultValue: 'chrome', description: 'chrome browser')
+            string(name: 'firefox', defaultValue: 'firefox', description: 'firefox browser')
+            }
     stages {
         stage('Build') {
             steps {
@@ -9,13 +14,24 @@ pipeline {
         }
         stage('Test') {
             parallel {
-                stage('Test Login') {
+                stage('run with chrome') {
+                    when {
+                        expression { params.browserToRun == 'both' || params.browserToRun == 'chrome' }
+                    }
                     steps {
-                        echo 'Testing in progress: '
+                        echo 'Test phase with chrome: '
                         sh "mvn -Dtest=TestPlan#successfulLogin test"
                     }
                 }
-            }
+                stage('run with firefox') {
+                    when {
+                        expression { params.browserToRun == 'both' || params.browserToRun == 'firefox' }
+                    }
+                    steps {
+                        echo 'Test phase with firefox: '
+                        sh "mvn -Dtest=TestPlan#successfulLogin test"
+                    }
+                }
         }
     }
     post {
