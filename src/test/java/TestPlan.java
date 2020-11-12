@@ -338,6 +338,8 @@ public class TestPlan {
         componentsPage.setComponentNameField("glass test");
         if (componentsPage.isError()) {
             componentsPage.deleteComponent();
+            mainPage.navigate(Utils.GLASS_URL);
+            projectConfigPageGlass.clickOnSideBarComponentIcon();
             componentsPage.setComponentNameField("glass test");
         }
         componentsPage.setDescriptionField("this is a test");
