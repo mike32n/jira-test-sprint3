@@ -32,6 +32,7 @@ pipeline {
                         sh "mvn -Dtest=TestPlan#successfulLogin test"
                     }
                 }
+            }
         }
     }
     post {
