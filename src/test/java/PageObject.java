@@ -24,11 +24,7 @@ public class PageObject {
 
     protected void moveAndClick(WebElement webElement) {
         waitForClickable(webElement);
-        Actions builder = new Actions(driver);
-        Actions seriesOfActions = builder
-                .moveToElement(webElement)
-                .click();
-        seriesOfActions.perform();
+        new Actions(driver).moveToElement(webElement).click().perform();
     }
 
     protected void waitForClickable(WebElement webElement) {
