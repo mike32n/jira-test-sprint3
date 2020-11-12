@@ -29,7 +29,8 @@ public class ComponentsPage extends PageObject {
     @FindBy(xpath = "//*[@id='deletecomponent_11621']")
     private WebElement deleteButton;
 
-    @FindBy(xpath = "//input[@id='submit']")
+//    @FindBy(xpath = "//input[@id='submit']")
+    @FindBy(id = "submit")
     private WebElement submitButton;
 
     @FindBy(xpath = "//*[@id='components-add__component']/div[1]/div")

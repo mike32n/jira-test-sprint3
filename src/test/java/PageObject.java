@@ -19,12 +19,7 @@ public class PageObject {
 
     protected void clickOn(WebElement webElement) {
         waitForClickable(webElement);
-//        Actions builder = new Actions(driver);
-//        Actions seriesOfActions = builder
-//                .moveToElement(webElement)
-//                .click();
         webElement.click();
-//        seriesOfActions.perform() ;
     }
 
     protected void moveAndClick(WebElement webElement) {
@@ -36,7 +31,7 @@ public class PageObject {
     }
 
     protected void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 2)
+        new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
