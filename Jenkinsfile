@@ -10,7 +10,6 @@ pipeline {
         stage('Test') {
             parallel {
                 stage('Test Login') {
-                    }
                     steps {
                         echo 'Testing in progress: '
                         sh "mvn test"
