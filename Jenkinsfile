@@ -13,12 +13,7 @@ pipeline {
                     }
                     steps {
                         echo 'Testing in progress: '
-                        sh "mvn -Dtest=TestPlan#successfulLogin test"
-                    }
-                    post {
-                        always {
-                            junit allowEmptyResults: true, testResults: '**/test-results/*.xml'
-                        }
+                        sh "mvn test"
                     }
                 }
             }
