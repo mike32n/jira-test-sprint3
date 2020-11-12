@@ -32,12 +32,12 @@ public class PageObject {
     }
 
     protected void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 4)
+        new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitForVisibility(WebElement webElement) throws Error {
-        new WebDriverWait(driver, 2)
+        new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 

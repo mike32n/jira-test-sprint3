@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.concurrent.TimeUnit;
+
 public class ComponentsPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='components-add__component']/div[1]/input")
@@ -64,8 +66,11 @@ public class ComponentsPage extends PageObject {
 
     public void deleteComponent() {
         componentFilter.sendKeys("glass test");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         moveAndClick(dots);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         clickOn(deleteButton);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         clickOn(submitButton);
     }
 
