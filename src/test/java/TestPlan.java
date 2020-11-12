@@ -57,10 +57,7 @@ public class TestPlan {
 
     @Test
     public void successfulLogin() {
-        Map<String, String> env = System.getenv();
-        for (String envName : env.keySet()) {
-            System.out.format("%s=%s%n", envName, env.get(envName));
-        }
+        System.out.println(System.getenv("STAGE_NAME"));
         System.out.println("AÉSKFNLKSDNGFLKSFDNGLKFNDLKNGLKDFNGNDFLKNGLKFDLJKGNFDGL");
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
