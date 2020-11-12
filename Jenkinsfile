@@ -22,6 +22,11 @@ pipeline {
                         echo 'Test phase with chrome: '
                         sh "mvn -Dtest=TestPlan#issueTypesForProjectsTest test"
                     }
+                    post {
+                        always {
+                            junit 'target/surefire-reports/*.xml'
+                        }
+                    }
                 }
                 stage('run with firefox') {
                     when {
@@ -30,6 +35,11 @@ pipeline {
                     steps {
                         echo 'Test phase with firefox: '
                         sh "mvn -Dtest=TestPlan#issueTypesForProjectsTest test"
+                    }
+                    post {
+                        always {
+                            junit 'target/surefire-reports/*.xml'
+                        }
                     }
                 }
             }
