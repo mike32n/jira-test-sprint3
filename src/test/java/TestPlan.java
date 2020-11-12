@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,9 +23,23 @@ public class TestPlan {
     private static final ChromeOptions capabilities = new ChromeOptions();
     private static RemoteWebDriver driver;
 
+
+
+    private static MutableCapabilities setOption() {
+        MutableCapabilities mutableCapabilities;
+
+        if (System.getenv("STAGE_NAME").equals("run with chrome")) {
+            mutableCapabilities = new ChromeOptions();
+        } else {
+            mutableCapabilities = new FirefoxOptions();
+        }
+        return mutableCapabilities;
+    }
+
     static {
+        MutableCapabilities mutCapAsOptions = setOption();
         try {
-            driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub"), mutCapAsOptions);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
