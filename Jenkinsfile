@@ -29,7 +29,7 @@ pipeline {
                     }
                     steps {
                         echo 'Test phase with firefox: '
-                        sh "mvn -Dtest=TestPlan#successfulLogin -Dbrowser=${firefox} test"
+                        sh "mvn -Dtest=TestPlan#successfulLogin -Dbrowser=$'firefox' test"
                     }
                 }
             }
