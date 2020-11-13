@@ -31,6 +31,8 @@ public class TestPlan {
         return mutableCapabilities;
     }
 
+    // kivenni a 38. sorban lévő user/password kombót, squash commit-tal bemergelni, hogy ne látszódjon a commit
+    // environment variable-be kiszervezni
     static {
         MutableCapabilities mutCapAsOptions = setOption();
         try {
