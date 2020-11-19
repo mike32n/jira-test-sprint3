@@ -71,4 +71,12 @@ public class ComponentsPage extends PageObject {
     public boolean isError() {
         return errorMessage.isDisplayed();
     }
+
+    public void emptySearchField() {
+        componentFilter.clear();
+    }
+
+    public void emptyComponentField() {
+        componentNameField.clear();
+    }
 }
