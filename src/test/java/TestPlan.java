@@ -4,17 +4,48 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class TestPlan {
-    private static final WebDriver driver = new ChromeDriver();
+
+    private static RemoteWebDriver driver;
+
+
+    private static MutableCapabilities setOption() {
+        MutableCapabilities mutableCapabilities;
+
+//        if (System.getenv("STAGE_NAME").equals("run with chrome")) {
+//            mutableCapabilities = new ChromeOptions();
+//        } else {
+            mutableCapabilities = new FirefoxOptions();
+//        }
+        return mutableCapabilities;
+    }
+
+    static {
+        MutableCapabilities mutCapAsOptions = setOption();
+        try {
+            driver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), mutCapAsOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @BeforeAll
     public static void setup() {
-        // ChromeDriver location set up in Utils class
         System.setProperty(Utils.WEBDRIVER, Utils.CHROME_DRIVER_LOCATION);
     }
+
+//    options = new ChromeOptions();
+//        options.addArguments("--use-fake-ui-for-media-stream=1");
+//        options.addArguments("--start-maximized");
+//    driver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), options);
 
     private static LoginPage loginPage = new LoginPage(driver);
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
@@ -373,6 +404,6 @@ public class TestPlan {
     @AfterAll
     public static void cleanUp() {
         driver.manage().deleteAllCookies();
-        driver.close();
+        driver.quit();
     }
 }
