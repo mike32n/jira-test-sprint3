@@ -373,6 +373,6 @@ public class TestPlan {
     @AfterAll
     public static void cleanUp() {
         driver.manage().deleteAllCookies();
-        driver.close();
+        driver.quit();
     }
 }
