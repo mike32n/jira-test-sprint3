@@ -1,8 +1,11 @@
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateIssuePage extends PageObject {
 
@@ -36,26 +39,22 @@ public class CreateIssuePage extends PageObject {
 
     public void setProjectField(String projectName) {
         clickOn(projectField);
-//        waitForClickable(projectField);
         projectField.sendKeys(Keys.DELETE);
         waitForClickable(projectField);
         projectField.sendKeys(projectName);
         waitForClickable(projectField);
         projectField.sendKeys(Keys.ENTER);
         clickOnSummaryField();
-        waitForClickable(projectField);
     }
 
     public void setIssueField(String issueType) {
         clickOn(issueField);
-//        waitForClickable(issueField);
         issueField.sendKeys(Keys.DELETE);
         waitForClickable(issueField);
         issueField.sendKeys(issueType);
         waitForClickable(issueField);
         issueField.sendKeys(Keys.ENTER);
         clickOnSummaryField();
-        waitForClickable(issueField);
     }
 
     public void verifyProjectField(String projectName) {
@@ -69,11 +68,9 @@ public class CreateIssuePage extends PageObject {
     }
 
     public void clickOnSummaryField() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0)");
         clickOn(summaryField);
-    }
-
-    private void clickOnDescription() {
-        clickOn(description);
     }
 
     public void clickOnCreate() {
@@ -88,10 +85,10 @@ public class CreateIssuePage extends PageObject {
 
     public void clickOnCancel() {
         clickOn(cancel);
-    }
-
-    public void acceptAlert() {
-        driver.switchTo().alert().accept();
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {
+        }
     }
 
     public void setSummaryField(String summaryText) {

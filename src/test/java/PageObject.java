@@ -13,23 +13,29 @@ public class PageObject {
 
         //ajax element locator
     }
+
     protected void clickOn(WebElement webElement) {
         waitForClickable(webElement);
         webElement.click();
     }
 
     protected void waitForClickable(WebElement webElement) {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitForVisibility(WebElement webElement) throws Error {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
-  
-    protected void navigate(String URL){
+
+    protected void navigate(String URL) {
         driver.get(URL);
+    }
+
+    public void acceptAlert() {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
     }
 }
 

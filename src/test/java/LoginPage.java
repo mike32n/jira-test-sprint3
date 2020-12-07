@@ -3,8 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-
 public class LoginPage extends PageObject {
 
     @FindBy(xpath = "//*[@id='login-form-username']")
@@ -31,11 +29,19 @@ public class LoginPage extends PageObject {
     }
 
     public void setUsername() {
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {
+        }
         waitForClickable(fieldUsername);
         fieldUsername.sendKeys(Utils.username);
     }
 
     public void setUsername(String user) {
+        try {
+            acceptAlert();
+        } catch (Exception ignore) {
+        }
         waitForClickable(fieldUsername);
         fieldUsername.sendKeys(user);
     }

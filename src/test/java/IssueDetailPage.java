@@ -3,9 +3,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 public class IssueDetailPage extends PageObject {
 
-    @FindBy(id = "summary-val")
+    @FindBy(xpath = "//*[@id='summary-val']")
     private WebElement summary;
 
     @FindBy(xpath = "//a[@id='opsbar-operations_more']/span")
@@ -23,6 +25,15 @@ public class IssueDetailPage extends PageObject {
     @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
     private WebElement userIcon;
 
+    @FindBy(xpath = "//*[@id='edit-issue']")
+    private WebElement editButton;
+
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
+    private WebElement popUpScreen;
+
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/span")
+    private WebElement popUpClose;
+
     public IssueDetailPage(WebDriver driver) {
         super(driver);
     }
@@ -30,7 +41,15 @@ public class IssueDetailPage extends PageObject {
     public void verifySummary(String summaryText) {
         waitForVisibility(summary);
         String issueSummary = summary.getText();
-        Assert.assertEquals(issueSummary, summaryText);
+        Assert.assertEquals(summaryText, issueSummary);
+    }
+
+    public void verifyEditedSummary(String summaryText) {
+        clickOn(popUpScreen);
+        clickOn(popUpClose);
+        waitForVisibility(summary);
+        String issueSummary = summary.getText();
+        Assert.assertEquals(summaryText, issueSummary);
     }
 
     public void deleteIssue() {
@@ -45,8 +64,12 @@ public class IssueDetailPage extends PageObject {
         super.navigate(URL);
     }
 
-    public void verifyIssueKey(String issueKey){
+    public void verifyIssueKey(String issueKey) {
         String issue = issueKeycode.getText();
         Assert.assertEquals(issueKey, issue);
+    }
+
+    public void clickOnEdit() {
+        clickOn(editButton);
     }
 }

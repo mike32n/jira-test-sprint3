@@ -4,11 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.io.IOException;
 
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
@@ -23,10 +20,13 @@ public class TestPlan {
     private static AltLoginPage altLoginPage = new AltLoginPage(driver);
     private static MainPage mainPage = new MainPage(driver);
     private static ProjectSummaryPage projectSummaryPage = new ProjectSummaryPage(driver);
+    private static ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver);
     private static CreateIssuePage createIssuePage = new CreateIssuePage(driver);
     private static IssueDetailPage issueDetailPage = new IssueDetailPage(driver);
+    private static EditIssuePage editIssuePage = new EditIssuePage(driver);
     private static ProfilePage profilePage = new ProfilePage(driver);
     private static ReleasesPage releasesPage = new ReleasesPage(driver);
+    private static ComponentsPage componentsPage = new ComponentsPage(driver);
     private static ProjectConfigPageGlass projectConfigPageGlass = new ProjectConfigPageGlass(driver);
 
     @ParameterizedTest()
@@ -130,7 +130,6 @@ public class TestPlan {
         createIssuePage.verifyErrorMessage();
 
         createIssuePage.clickOnCancel();
-        createIssuePage.acceptAlert();
         mainPage.logout();
     }
 
@@ -173,19 +172,21 @@ public class TestPlan {
         mainPage.clickCreateButton();
 
         createIssuePage.setProjectField(projectName);
-        createIssuePage.setIssueField(issueType);
-
         createIssuePage.verifyProjectField(assertProjectName);
+
+        createIssuePage.setIssueField(issueType);
         createIssuePage.verifyIssueType(assertIssueType);
 
         createIssuePage.clickOnCancel();
         mainPage.logout();
+
+
     }
-  
+
     @ParameterizedTest
     @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectsData.csv", numLinesToSkip = 1)
-    public void browseProjectsTest(String URL, String projectKey){
+    public void browseProjectsTest(String URL, String projectKey) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -198,8 +199,9 @@ public class TestPlan {
     }
 
     @ParameterizedTest
+    @DisplayName("Browse Issues")
     @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
-    public void browseIssuesTest(String URL, String issueKey){
+    public void browseIssuesTest(String URL, String issueKey) {
         loginPage.maximizeWindow();
         loginPage.openLoginPage();
 
@@ -274,9 +276,103 @@ public class TestPlan {
         mainPage.logout();
     }
 
+    @ParameterizedTest
+    @DisplayName("Edit Issues")
+    @CsvFileSource(resources = "/EditIssueData.csv", numLinesToSkip = 1)
+    public void editIssuesTest(String URL) {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        projectSummaryPage.navigate(URL);
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("This is a test for editing issues");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifyEditedSummary("This is a test for editing issues");
+
+        issueDetailPage.clickOnEdit();
+        editIssuePage.setSummaryField("Test issue");
+        editIssuePage.clickOnUpdate();
+
+        issueDetailPage.verifyEditedSummary("Test issue");
+
+        mainPage.logout();
+    }
+
+    @Test
+    @DisplayName("Glass Components")
+    public void glassComponentsTest() {
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+        projectConfigPageGlass.clickOnSideBarComponentIcon();
+        componentsPage.setComponentNameField("glass test");
+        if (componentsPage.isError()) {
+            componentsPage.deleteComponent();
+            componentsPage.emptySearchField();
+            componentsPage.emptyComponentField();
+            componentsPage.setComponentNameField("glass test");
+            componentsPage.setDescriptionField("this is a test");
+            componentsPage.setDefaultAssigneeField("Project default (Project lead)");
+            componentsPage.clickAddButton();
+            mainPage.navigate(Utils.GLASS_URL);
+            projectConfigPageGlass.verifyNewGlassComponent();
+            projectConfigPageGlass.clickOnSideBarComponentIcon();
+            componentsPage.deleteComponent();
+            mainPage.logout();
+        } else {
+            componentsPage.setDescriptionField("this is a test");
+            componentsPage.setDefaultAssigneeField("Project default (Project lead)");
+            componentsPage.clickAddButton();
+            mainPage.navigate(Utils.GLASS_URL);
+            projectConfigPageGlass.verifyNewGlassComponent();
+            projectConfigPageGlass.clickOnSideBarComponentIcon();
+            componentsPage.deleteComponent();
+            mainPage.logout();
+        }
+    }
+
+    @Test
+    @DisplayName("Glass Issue Type Scheme")
+    public void glassIssueTypeSchemeTest() {
+
+        loginPage.maximizeWindow();
+        loginPage.openLoginPage();
+
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLoginButton();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnProjectSettingButton();
+
+        projectSettingsPage.verifyIssueTypes();
+
+        mainPage.navigate(Utils.GLASS_URL);
+
+        projectConfigPageGlass.clickOnSchemeTab();
+        projectConfigPageGlass.verifyScheme();
+
+        projectConfigPageGlass.clickOnIssueTypeDropdown();
+        projectConfigPageGlass.verifyIssueTypes();
+
+        mainPage.logout();
+    }
+
     @AfterAll
     public static void cleanUp() {
         driver.manage().deleteAllCookies();
-        driver.close();
+        driver.quit();
     }
 }
