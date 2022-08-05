@@ -5,17 +5,15 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends PageObject {
 
-    @FindBy(id = "create_link")
-    private WebElement createButton;
+    @FindBy(id = "name")
+    private WebElement name;
 
-    @FindBy(xpath = "//a[@id='header-details-user-fullname']/span/span/img")
-    private WebElement userIcon;
 
-    @FindBy(xpath = "//*[@id='log_out']")
-    private WebElement logoutButton;
+    @FindBy(id = "date")
+    private WebElement date;
 
-    @FindBy(xpath = "//*[@id='content']//strong")
-    private WebElement logoutMessage;
+    @FindBy(xpath = "//form//button")
+    private WebElement button;
 
     public MainPage(WebDriver driver) {
         super(driver);
