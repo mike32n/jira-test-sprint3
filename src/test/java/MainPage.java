@@ -22,6 +22,14 @@ public class MainPage extends PageObject {
         super(driver);
     }
 
+    public void maximizeWindow() {
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+    }
+
+    public void openMainPage() {
+        driver.get(Utils.BASE_URL);
+    }
     public void clickTestButton() {
         clickOn(testButton);
     }
