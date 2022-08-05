@@ -25,19 +25,15 @@ public class TestPlan {
 
     @ParameterizedTest()
     @DisplayName("Successful Login")
-    @CsvFileSource(resources = "/LoginCredentials.csv", numLinesToSkip = 1)
-    public void enterData(String user, String pass) {
-        mainPage.maximizeWindow();
+    @CsvFileSource(resources = "/Employees.csv", numLinesToSkip = 1)
+    public void enterData(String name, String birthday) {
 
-        loginPage.setUsername(user);
-        loginPage.setPassword(pass);
-        loginPage.clickLoginButton();
+        mainPage.setName(name);
+        mainPage.setDate(birthday);
+        mainPage.clickTestButton();
 
-        mainPage.navigate(Utils.PROFILE_PAGE);
+        mainPage.verifySuccess();
 
-        profilePage.verifyUsername(user);
-
-        mainPage.logout();
     }
 
 //    @ParameterizedTest()

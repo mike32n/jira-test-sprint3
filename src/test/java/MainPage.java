@@ -6,36 +6,43 @@ import org.openqa.selenium.support.FindBy;
 public class MainPage extends PageObject {
 
     @FindBy(id = "name")
-    private WebElement name;
+    private WebElement fieldName;
 
 
     @FindBy(id = "date")
-    private WebElement date;
+    private WebElement fieldDate;
 
     @FindBy(xpath = "//form//button")
-    private WebElement button;
+    private WebElement testButton;
+
+    @FindBy(xpath = "//h3")
+    private WebElement feedbackText;
 
     public MainPage(WebDriver driver) {
         super(driver);
     }
 
-    public void clickCreateButton() {
-        clickOn(createButton);
+    public void clickTestButton() {
+        clickOn(testButton);
     }
 
     @Override
     protected void navigate(String URL) {
-        waitForVisibility(userIcon);
         super.navigate(URL);
     }
 
-    public void logout() {
-        clickOn(userIcon);
-        clickOn(logoutButton);
+    public void setName(String name) {
+        waitForClickable(fieldName);
+        fieldName.sendKeys(name);
     }
 
-    public void verifySuccessfulLogout() {
-        waitForVisibility(logoutMessage);
-        Assert.assertTrue(logoutMessage.getText().startsWith("You are now logged out."));
+    public void setDate(String date) {
+        waitForClickable(fieldDate);
+        fieldDate.sendKeys(date);
+    }
+
+    public void verifySuccess() {
+        waitForVisibility(feedbackText);
+        Assert.assertTrue(feedbackText.getText().startsWith("Siker!"));
     }
 }
