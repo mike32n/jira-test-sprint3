@@ -11,7 +11,6 @@ public class PageObject {
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
-        //ajax element locator
     }
     protected void clickOn(WebElement webElement) {
         waitForClickable(webElement);
